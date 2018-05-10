@@ -1,18 +1,17 @@
 package org.hallock.control;
 
 import org.hallock.model.AutoPicker;
+import org.hallock.util.Camera;
+import org.hallock.util.Logger;
 import org.hallock.view.Ui;
 
+// Rename to registry
 public class ApplicationContext {
-    Ui ui;
-    Config config;
-    AutoPicker picker;
-
-    ApplicationContext(Config config, Ui ui, AutoPicker autoPicker) {
-        this.ui = ui;
-        this.config = config;
-        this.picker = autoPicker;
-    }
+    public Ui ui;
+    public Config config;
+    public AutoPicker picker;
+    public Camera camera;
+    public Logger logger;
 
 
     public boolean stop() {
@@ -24,5 +23,10 @@ public class ApplicationContext {
     }
 
     public void refresh() {
+    }
+
+    static ApplicationContext applicationContext;
+    public static ApplicationContext getInstance() {
+        return applicationContext;
     }
 }

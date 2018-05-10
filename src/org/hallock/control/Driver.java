@@ -4,6 +4,7 @@ import org.hallock.control.ApplicationContext;
 import org.hallock.control.Config;
 import org.hallock.model.AutoPicker;
 import org.hallock.util.Camera;
+import org.hallock.util.Logger;
 import org.hallock.view.ImageSelector;
 import org.hallock.view.Ui;
 
@@ -16,14 +17,26 @@ import java.nio.file.Paths;
 
 public class Driver {
     public static void main(String[] args) throws AWTException, IOException, InterruptedException {
-        Config config = Config.loadConfig(Paths.get("./config/config.json"));
-        Ui ui = Ui.buildUi();
+        ApplicationContext.applicationContext = new ApplicationContext();
+        ApplicationContext.applicationContext.logger = new Logger();
+        ApplicationContext.applicationContext.config = Config.loadConfig(Paths.get("./config/config.json"));
+        ApplicationContext.applicationContext.picker = AutoPickerBuilder.buildAutoPicker();
+
+
+
+        Ui ui = UiBuilder.buildUi();
+
 
         Robot robot = new Robot();
         Camera camera = new Camera(robot);
         AutoPicker picker = new AutoPicker(camera);
 
-        ImageSelector imageSelector = ImageSelector.createImageSelector();
+
+
+
+
+
+
 //        imageSelector.show();
 
         int heroHorizontalGap = 7;
@@ -38,30 +51,30 @@ public class Driver {
         int currentY = heroStartY;
         int currentX = heroStartX;
 
-        int imageCounter = 0;
-        for (int type = 0; type < 3; type++) {
-            for (int h = 0; h < 21; h++) {
-                Rectangle r = new Rectangle(currentX, currentY, heroWidth, heroHeight);
-                imageSelector.setRectangle(r);
-                ImageIO.write(robot.createScreenCapture(r), "png", new File("hero_" + imageCounter++ + ".png"));
-
-                Thread.sleep(200);
-                currentX += heroWidth + heroHorizontalGap;
-            }
-            currentX = heroStartX;
-            currentY += heroHeight + heroVerticalGap;
-
-            for (int h = 0; h < 21; h++) {
-                Rectangle r = new Rectangle(currentX, currentY, heroWidth, heroHeight);
-                imageSelector.setRectangle(r);
-                ImageIO.write(robot.createScreenCapture(r), "png", new File("hero_" + imageCounter++ + ".png"));
-
-                Thread.sleep(200);
-                currentX += heroWidth + heroHorizontalGap;
-            }
-            currentX = heroStartX;
-            currentY += heroTypeGap + heroHeight;
-        }
+//        int imageCounter = 0;
+//        for (int type = 0; type < 3; type++) {
+//            for (int h = 0; h < 21; h++) {
+//                Rectangle r = new Rectangle(currentX, currentY, heroWidth, heroHeight);
+//                imageSelector.setRectangle(r);
+//                ImageIO.write(robot.createScreenCapture(r), "png", new File("hero_" + imageCounter++ + ".png"));
+//
+//                Thread.sleep(200);
+//                currentX += heroWidth + heroHorizontalGap;
+//            }
+//            currentX = heroStartX;
+//            currentY += heroHeight + heroVerticalGap;
+//
+//            for (int h = 0; h < 21; h++) {
+//                Rectangle r = new Rectangle(currentX, currentY, heroWidth, heroHeight);
+//                imageSelector.setRectangle(r);
+//                ImageIO.write(robot.createScreenCapture(r), "png", new File("hero_" + imageCounter++ + ".png"));
+//
+//                Thread.sleep(200);
+//                currentX += heroWidth + heroHorizontalGap;
+//            }
+//            currentX = heroStartX;
+//            currentY += heroTypeGap + heroHeight;
+//        }
 
 
 //        ApplicationContext context = new ApplicationContext(

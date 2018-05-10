@@ -1,7 +1,18 @@
 package org.hallock.model;
 
+import org.hallock.control.ApplicationContext;
+import org.hallock.model.geometry.HeroGridGeometry;
+import org.hallock.model.geometry.ImageRowGeometry;
 import org.hallock.util.Camera;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class AutoPicker {
@@ -17,11 +28,12 @@ public class AutoPicker {
         identifiers = new LinkedList<>();
     }
 
-    public PickedState identifyPicks() {
+    public IdentificationResults identifyPicks() {
         return null;
     }
 
     public void update() {
 
     }
+
 }

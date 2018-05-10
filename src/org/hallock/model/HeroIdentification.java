@@ -4,6 +4,11 @@ import java.awt.image.BufferedImage;
 
 public class HeroIdentification {
     HeroState state;
-    BufferedImage image;
+    BufferedImage[] images;
+
+    HeroIdentification(HeroState state, BufferedImage[] images) {
+        this.state = state;
+        this.images = images;
+    }
 }
 

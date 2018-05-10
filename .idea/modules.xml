@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$//org.hallock.autopicker/org.hallock.autopicker.iml" filepath="$PROJECT_DIR$//org.hallock.autopicker/org.hallock.autopicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AutoPicker.iml" filepath="$PROJECT_DIR$/AutoPicker.iml" />
     </modules>
   </component>
 </project>

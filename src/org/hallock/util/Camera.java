@@ -13,4 +13,8 @@ public class Camera {
     BufferedImage click(Rectangle rectangle) {
         return robot.createScreenCapture(rectangle);
     }
+
+    public BufferedImage shoot(Rectangle location) {
+        return robot.createScreenCapture(location);
+    }
 }

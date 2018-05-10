@@ -11,12 +11,13 @@ import java.nio.file.Path;
 public class Config {
     // Should probably be resources, not strings.
     // TODO
-    String heroConfigFile;
-    String imageDirectory;
-    String userId;
-    String userCred;
-    String dotaPickerUrl;
-    Rectangle dotaApplication;
+    public String heroConfigFile;
+    public String imageDirectory;
+    public String userId;
+    public String userCred;
+    public String dotaPickerUrl;
+    public Rectangle dotaApplication;
+    public int comparisonParameter = 2;
 
     public Config(JSONObject config) {
         this.heroConfigFile = config.getString("hero-config-file");
