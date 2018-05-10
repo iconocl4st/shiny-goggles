@@ -28,13 +28,6 @@ public class Config {
         this.dotaApplication = Serializer.parseRectangle(config.getJSONObject("application-location"));
     }
 
-
-    public static Config loadConfig(Path p) throws IOException {
-        try (Reader reader = new FileReader(p.toFile());) {
-            return new Config(new JSONObject(new JSONTokener(reader)));
-        }
-    }
-
     public long getWaitTime() {
         return 20 * 1000;
     }

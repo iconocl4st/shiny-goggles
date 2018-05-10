@@ -5,6 +5,7 @@ import org.hallock.control.Config;
 import org.hallock.model.AutoPicker;
 import org.hallock.util.Camera;
 import org.hallock.util.Logger;
+import org.hallock.util.Serializer;
 import org.hallock.view.ImageSelector;
 import org.hallock.view.Ui;
 
@@ -19,7 +20,8 @@ public class Driver {
     public static void main(String[] args) throws AWTException, IOException, InterruptedException {
         ApplicationContext.applicationContext = new ApplicationContext();
         ApplicationContext.applicationContext.logger = new Logger();
-        ApplicationContext.applicationContext.config = Config.loadConfig(Paths.get("./config/config.json"));
+        ApplicationContext.applicationContext.config = new Config();
+        Serializer.readFile().loadConfig(Paths.get("./config/config.json"));
         ApplicationContext.applicationContext.picker = AutoPickerBuilder.buildAutoPicker();
 
 

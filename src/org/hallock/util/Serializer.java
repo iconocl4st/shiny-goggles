@@ -1,8 +1,15 @@
 package org.hallock.util;
 
+import org.hallock.control.Config;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.awt.*;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Serializer {
     public static Rectangle parseRectangle(JSONObject obj) {
@@ -12,5 +19,11 @@ public class Serializer {
                 obj.getInt("w"),
                 obj.getInt("h")
         );
+    }
+
+    public static JSONObject readFile(Path path) throws IOException {
+        try (InputStream reader = Files.newInputStream(path);) {
+            return new JSONObject(new JSONTokener(reader)));
+        }
     }
 }
