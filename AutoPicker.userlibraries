@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Spring-4.3.16.RELEASE">
+    <archive path="/work/dota/AutoPicker/lib/spring-instrument-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-instrument-tomcat-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/commons-logging-1.2.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-oxm-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/aopalliance-1.0.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-aspects-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-context-support-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-expression-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-jms-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-tx-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-jdbc-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-aop-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-messaging-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-orm-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-test-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-beans-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-core-4.3.16.RELEASE.jar" />
+    <archive path="/work/dota/AutoPicker/lib/spring-context-4.3.16.RELEASE.jar" />
+  </library>
+  <library name="org.json:json:20131018">
+    <archive path="/home/thallock/.m2/repository/org/json/json/20131018/json-20131018.jar" />
+  </library>
+</eclipse-userlibraries>
+
