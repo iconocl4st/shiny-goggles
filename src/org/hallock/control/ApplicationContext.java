@@ -1,6 +1,7 @@
 package org.hallock.control;
 
 import org.hallock.model.AutoPicker;
+import org.hallock.model.Heroes;
 import org.hallock.util.Camera;
 import org.hallock.util.Logger;
 import org.hallock.view.Ui;
@@ -12,6 +13,7 @@ public class ApplicationContext {
     public AutoPicker picker;
     public Camera camera;
     public Logger logger;
+    public Heroes heroes;
 
 
     public boolean stop() {

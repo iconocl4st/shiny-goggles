@@ -3,6 +3,7 @@ package org.hallock.control;
 import org.hallock.model.*;
 import org.hallock.model.geometry.HeroGridGeometry;
 import org.hallock.model.geometry.ImageRowGeometry;
+import org.hallock.util.Serializer;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,15 +12,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class AutoPickerBuilder {
-
     private static void addHeroGridIdentifiers(
-            LinkedList<HeroIdentifier> identifiers,
+            LinkedList<StateIdentifier> identifiers,
             HeroGridGeometry grid,
             JSONObject gridConfig
     ) {
@@ -31,7 +32,8 @@ public class AutoPickerBuilder {
             for (int r = 0; r < rows.length(); r++) {
                 JSONArray heros = rows.getJSONArray(r);
                 for (int h = 0; h < heros.length(); h++) {
-                    JSONObject hero = heros.getJSONObject(h);
+                    JSONObject spec = heros.getJSONObject(h);
+                    Hero hero = ApplicationContext.getInstance().heroes.getHero(spec.getString("hero"));
                     Rectangle location = new Rectangle(currentX, currentY, grid.heroWidth, grid.heroHeight);
                     identifiers.addLast(new HeroIdentifier(
                             location,
@@ -64,38 +66,69 @@ public class AutoPickerBuilder {
 
 
     private static void addHeroPickIdentifiers(
-            LinkedList<HeroIdentifier> identifiers,
-            ImageRowGeometry grid
+            LinkedList<StateIdentifier> identifiers,
+            ImageRowGeometry grid,
+            JSONObject pickConfig
     ) {
-
+        JSONArray radiantArray = pickConfig.getJSONArray("radiant");
+        for (int i=0;i<radiantArray.length(); i++) {
+            JSONObject hero = radiantArray.getJSONObject(i);
+            identifiers.add(new HeroIdentifier(
+                    location,
+                    hero,
+                    new HeroIdentification[]{
+                            new HeroIdentification(
+                                    HeroState.PickedRadiant,
+                                    new BufferedImage[]{getImage(hero.getString("picked-image"))}
+                        )
+                    }
+            );
+        }
+        JSONArray direArray = pickConfig.getJSONArray("dire");
+        for (int i=0;i<direArray.length(); i++) {
+            JSONObject hero = direArray.getJSONObject(i);
+            identifiers.add(new HeroIdentifier(
+                    HeroState.PickedDire,
+                    new BufferedImage[]{getImage(hero.getString("picked-image"))}
+            );
+        }
     }
 
 
     private static void addPlayerIdentifier(
-            LinkedList<HeroIdentifier> identifiers,
-            ImageRowGeometry grid
+            LinkedList<StateIdentifier> identifiers,
+            ImageRowGeometry grid,
+            JSONObject playerConfig
     ) {
 
     }
 
-    public static AutoPicker buildAutoPicker() {
-        Config config = ApplicationContext.getInstance().config;
-
-        config.heroConfigFile
-        HashMap<String, Hero> herosById = null;
-
+    public static AutoPicker buildAutoPicker(JSONObject layout) throws IOException {
         HeroGridGeometry grid = new HeroGridGeometry();
-        ImageRowGeometry pickedHeros = null;
-        ImageRowGeometry playerNames = null;
+        ImageRowGeometry pickedHeros = new ImageRowGeometry();
+        ImageRowGeometry playerNames = new ImageRowGeometry();
+        LinkedList<StateIdentifier> identifiers = new LinkedList<>();
 
-        LinkedList<HeroIdentifier> identifiers = new LinkedList<>();
+        JSONObject grid = layout.getJSONObject("grid");
+        addHeroGridIdentifiers(
+                identifiers,
+                HeroGridGeometry.parseHeroGridGeometry(grid.getJSONObject("geometry")),
+                grid.getJSONObject("config")
+        );
 
-        JSONObject gridConfig = null;
-        JSONObject userConfig = null;
+        JSONObject picks = layout.getJSONObject("picks");
+        addHeroPickIdentifiers(
+                identifiers,
+                ImageRowGeometry.parseGeometry(picks.getJSONObject("geometry")),
+                picks.getJSONObject("config")
+        );
 
-        addHeroGridIdentifiers(identifiers, grid, gridConfig);
-        addHeroPickIdentifiers(identifiers, pickedHeros);
-        addPlayerIdentifier(identifiers, playerNames, userConfig);
+        JSONObject players = layout.getJSONObject("players");
+        addPlayerIdentifier(
+                identifiers,
+                ImageRowGeometry.parseGeometry(players.getJSONObject("geometry")),
+                players.getJSONObject("config")
+        );
     }
 
     // Should use the image directory from within the config.

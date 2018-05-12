@@ -7,7 +7,8 @@ public enum HeroState {
     PickedDire,
     PickedRadiant,
     Unavailable,
-    Picked, Unidentified
+    Picked,
+    Unidentified
 }
 
 
