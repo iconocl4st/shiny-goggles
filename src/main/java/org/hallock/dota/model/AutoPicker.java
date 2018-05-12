@@ -1,6 +1,7 @@
+
 package org.hallock.dota.model;
 
-import org.hallock.dota.util.Camera;
+import org.hallock.dota.control.ApplicationContext;
 
 import java.util.LinkedList;
 
@@ -9,20 +10,18 @@ public class AutoPicker {
     // first player [x=168,y=10,width=130,height=77]
     // first hero [x=172,y=188,width=62,height=89]
 
-    private final Camera camera;
-    private final LinkedList<HeroIdentifier> identifiers;
+    private final LinkedList<StateIdentifier> identifiers;
     
-    public AutoPicker(Camera camera) {
-        this.camera = camera;
-        identifiers = new LinkedList<>();
+    public AutoPicker(LinkedList<StateIdentifier> identifiers) {
+        this.identifiers = identifiers;
     }
 
-    public IdentificationResults identifyPicks() {
-        return null;
+
+    public Identifications identifyPicks() {
+        Identifications results = Identifications.createEmptyResults();
+        for (StateIdentifier identifier : identifiers) {
+            identifier.identify(ApplicationContext.getInstance().camera, results);
+        }
+        return results;
     }
-
-    public void update() {
-
-    }
-
 }

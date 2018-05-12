@@ -21,7 +21,7 @@ public class Serializer {
 
     public static JSONObject readFile(Path path) throws IOException {
         try (InputStream reader = Files.newInputStream(path);) {
-            return new JSONObject(new JSONTokener(reader)));
+            return new JSONObject(new JSONTokener(reader));
         }
     }
 }

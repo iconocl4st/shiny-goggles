@@ -1,0 +1,74 @@
+
+
+
+
+
+
+
+
+
+//        imageSelector.show();
+
+        int heroHorizontalGap = 7;
+        int heroVerticalGap = 10;
+        int heroWidth = 45;
+        int heroHeight = 70;
+        int heroTypeGap = 34;
+
+        int heroStartX = 172;
+        int heroStartY = 188;
+
+        int currentY = heroStartY;
+        int currentX = heroStartX;
+
+//        int imageCounter = 0;
+//        for (int type = 0; type < 3; type++) {
+//            for (int h = 0; h < 21; h++) {
+//                Rectangle r = new Rectangle(currentX, currentY, heroWidth, heroHeight);
+//                imageSelector.setRectangle(r);
+//                ImageIO.write(robot.createScreenCapture(r), "png", new File("hero_" + imageCounter++ + ".png"));
+//
+//                Thread.sleep(200);
+//                currentX += heroWidth + heroHorizontalGap;
+//            }
+//            currentX = heroStartX;
+//            currentY += heroHeight + heroVerticalGap;
+//
+//            for (int h = 0; h < 21; h++) {
+//                Rectangle r = new Rectangle(currentX, currentY, heroWidth, heroHeight);
+//                imageSelector.setRectangle(r);
+//                ImageIO.write(robot.createScreenCapture(r), "png", new File("hero_" + imageCounter++ + ".png"));
+//
+//                Thread.sleep(200);
+//                currentX += heroWidth + heroHorizontalGap;
+//            }
+//            currentX = heroStartX;
+//            currentY += heroTypeGap + heroHeight;
+//        }
+
+
+//        ApplicationContext context = new ApplicationContext(
+//                config,
+//                ui,
+//                picker
+//        );
+//
+//        mainLoop(context);
+    }
+
+    public static void mainLoop(ApplicationContext context) {
+        while (!context.stop()) {
+//            final long lastRefreshTime = context.getLastRefreshTime();
+//
+//            if (context.needsPick()) {
+//
+//            }
+//            final long lastpickTime = context.getLastPickTime();
+            context.picker.update();
+            try {
+                Thread.sleep(context.config.getWaitTime());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }

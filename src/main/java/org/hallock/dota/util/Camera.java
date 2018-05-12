@@ -17,4 +17,10 @@ public class Camera {
     public BufferedImage shoot(Rectangle location) {
         return robot.createScreenCapture(location);
     }
+
+
+    public static Camera buildCamera() throws AWTException {
+        Robot robot = new Robot();
+        return new Camera(robot);
+    }
 }

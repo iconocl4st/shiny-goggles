@@ -1,20 +1,19 @@
 package org.hallock.dota.model;
 
 import org.hallock.dota.control.ApplicationContext;
+import org.hallock.dota.util.Camera;
+import org.hallock.dota.util.OneIdea;
+import org.json.JSONObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import org.hallock.dota.util.OneIdea;
-import org.hallock.dota.util.Camera;
-import org.json.JSONObject;
 
 public class HeroIdentifier implements StateIdentifier {
     Rectangle location;
     Hero hero;
     HeroIdentification[] possibleStates;
 
-    HeroIdentifier(Rectangle rec, Hero hero, HeroIdentification[] possibleStates) {
+    public HeroIdentifier(Rectangle rec, Hero hero, HeroIdentification[] possibleStates) {
         this.location = rec;
         this.hero = hero;
         this.possibleStates = possibleStates;
@@ -25,7 +24,7 @@ public class HeroIdentifier implements StateIdentifier {
 
     }
 
-    void getMinimumIdentificationCost(BufferedImage observed) {
+    HeroIdentification getMinimumIdentificationCost(BufferedImage observed) {
         // Could perform some check for change here if it is more efficient.
 
         double minimumDistance = Double.POSITIVE_INFINITY;
@@ -47,10 +46,11 @@ public class HeroIdentifier implements StateIdentifier {
         return minimum;
     }
 
-    void identify(Camera camera, IdentificationResults state) {
+    public void identify(Camera camera, Identifications state) {
         HeroIdentification minimum = getMinimumIdentificationCost(camera.shoot(location));
         if (minimum == null) {
-            throw new Exception('It is null');
+            // throw new Exception("It is null");
+            System.out.println("It is null");
         }
         state.heroIdentified(hero, minimum.state);
     }
