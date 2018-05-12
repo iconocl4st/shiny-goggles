@@ -1,6 +1,6 @@
 package org.hallock.dota.model;
 
-import org.hallock.dota.control.ApplicationContext;
+import org.hallock.dota.control.Registry;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -180,7 +180,7 @@ public class Identifications {
 
     public static Identifications createEmptyResults() {
         Identifications returnValue = new Identifications();
-        for (Hero hero : ApplicationContext.getInstance().heroes.getAll()) {
+        for (Hero hero : Registry.getInstance().heroes.getAll()) {
             returnValue.setState(hero, HeroState.Unidentified);
         }
         return returnValue;

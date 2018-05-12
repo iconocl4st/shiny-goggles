@@ -1,5 +1,6 @@
 {
     "hero-config-file": "/work/dota/config/heros.json",
+    "layout-file": "/work/dota/config/layout.json",
     "image-directory": "/work/dota/config/images",
     "username": "",
     "credential": "",

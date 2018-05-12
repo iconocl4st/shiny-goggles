@@ -31,7 +31,7 @@ public class AutoPickerBuilder {
                 JSONArray heros = rows.getJSONArray(r);
                 for (int h = 0; h < heros.length(); h++) {
                     JSONObject spec = heros.getJSONObject(h);
-                    Hero hero = ApplicationContext.getInstance().heroes.getHero(spec.getString("hero"));
+                    Hero hero = Registry.getInstance().heroes.getHero(spec.getString("hero"));
                     Rectangle location = new Rectangle(currentX, currentY, grid.heroWidth, grid.heroHeight);
                     identifiers.addLast(new HeroIdentifier(
                             location,
@@ -71,7 +71,7 @@ public class AutoPickerBuilder {
         JSONArray radiantArray = pickConfig.getJSONArray("radiant");
         for (int i=0;i<radiantArray.length(); i++) {
             JSONObject heroObj = radiantArray.getJSONObject(i);
-            Hero hero = ApplicationContext.getInstance().heroes.getHero(heroObj.getString("hero"));
+            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
             Rectangle location = new Rectangle();
             identifiers.add(new HeroIdentifier(
                     location,
@@ -87,7 +87,7 @@ public class AutoPickerBuilder {
         JSONArray direArray = pickConfig.getJSONArray("dire");
         for (int i=0;i<direArray.length(); i++) {
             JSONObject heroObj = radiantArray.getJSONObject(i);
-            Hero hero = ApplicationContext.getInstance().heroes.getHero(heroObj.getString("hero"));
+            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
             Rectangle location = new Rectangle();
             identifiers.add(new HeroIdentifier(
                     location,
@@ -142,11 +142,11 @@ public class AutoPickerBuilder {
 
     // Should use the image directory from within the config.
     private static BufferedImage getImage(String location){
-        String imageDirectory = ApplicationContext.getInstance().config.imageDirectory;
+        String imageDirectory = Registry.getInstance().config.imageDirectory;
         try (InputStream inputStream = Files.newInputStream(Paths.get(imageDirectory, location))) {
             return ImageIO.read(inputStream);
         } catch (IOException e) {
-            ApplicationContext.getInstance().logger.log("Unable to load image at location " + location, e);
+            Registry.getInstance().logger.log("Unable to load image at location " + location, e);
             return null;
         }
     }

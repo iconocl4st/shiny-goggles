@@ -6,8 +6,7 @@ import org.hallock.dota.util.Camera;
 import org.hallock.dota.util.Logger;
 import org.hallock.dota.view.Ui;
 
-// Rename to registry
-public class ApplicationContext {
+public class Registry {
     public Ui ui;
     public Config config;
     public Camera camera;
@@ -28,8 +27,8 @@ public class ApplicationContext {
     public void refresh() {
     }
 
-    static ApplicationContext applicationContext;
-    public static ApplicationContext getInstance() {
-        return applicationContext;
+    static Registry registry;
+    public static Registry getInstance() {
+        return registry;
     }
 }

@@ -13,24 +13,24 @@ import java.util.Timer;
 
 public class Driver {
     public static void main(String[] args) throws AWTException, IOException {
-        ApplicationContext.applicationContext = new ApplicationContext();
-        ApplicationContext.applicationContext.logger = new Logger();
-        ApplicationContext.applicationContext.config = new Config(
+        Registry.registry = new Registry();
+        Registry.registry.logger = new Logger();
+        Registry.registry.config = new Config(
                 Serializer.readFile(Paths.get("./config/config.json"))
         );
-        ApplicationContext.applicationContext.camera = Camera.buildCamera();
-        ApplicationContext.applicationContext.heroes = Heroes.buildHeroes(
-                Serializer.readFile(Paths.get(ApplicationContext.getInstance().config.heroConfigFile))
+        Registry.registry.camera = Camera.buildCamera();
+        Registry.registry.heroes = Heroes.buildHeroes(
+                Serializer.readFile(Paths.get(Registry.getInstance().config.heroConfigFile))
         );
-        ApplicationContext.applicationContext.picker = AutoPickerBuilder.buildAutoPicker(
-                Serializer.readFile(Paths.get(ApplicationContext.applicationContext.config.layoutFile))
+        Registry.registry.picker = AutoPickerBuilder.buildAutoPicker(
+                Serializer.readFile(Paths.get(Registry.registry.config.layoutFile))
         );
-        ApplicationContext.applicationContext.ui = UiBuilder.buildUi(
-                Serializer.readFile(Paths.get(ApplicationContext.applicationContext.config.uiSettings))
+        Registry.registry.ui = UiBuilder.buildUi(
+                Serializer.readFile(Paths.get(Registry.registry.config.uiSettings))
         );
 
-        ApplicationContext.applicationContext.runner = new Runner(new Timer());
+        Registry.registry.runner = new Runner(new Timer());
 
-        ApplicationContext.applicationContext.runner.start();
+        Registry.registry.runner.start();
     }
 }

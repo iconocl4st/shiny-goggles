@@ -1,6 +1,6 @@
 package org.hallock.dota.model;
 
-import org.hallock.dota.control.ApplicationContext;
+import org.hallock.dota.control.Registry;
 import org.hallock.dota.util.Camera;
 import org.hallock.dota.util.OneIdea;
 import org.json.JSONObject;
@@ -34,7 +34,7 @@ public class HeroIdentifier implements StateIdentifier {
                 double distance = OneIdea.getDistance(
                         image,
                         observed,
-                        ApplicationContext.getInstance().config.comparisonParameter
+                        Registry.getInstance().config.comparisonParameter
                 );
                 if (distance > minimumDistance) {
                     continue;

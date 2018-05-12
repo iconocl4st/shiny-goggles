@@ -1,5 +1,579 @@
 {
-    "heros": [
-        
-    ]
+  "heroes": [
+    {
+      "id": "abaddon",
+      "display": "Abaddon",
+      "pickId": 0
+    },
+    {
+      "id": "alchemist",
+      "display": "Alchemist",
+      "pickId": 0
+    },
+    {
+      "id": "axe",
+      "display": "Axe",
+      "pickId": 0
+    },
+    {
+      "id": "beast-master",
+      "display": "Beast Master",
+      "pickId": 0
+    },
+    {
+      "id": "brew-master",
+      "display": "Brew Master",
+      "pickId": 0
+    },
+    {
+      "id": "bristle-back",
+      "display": "Bristle Back",
+      "pickId": 0
+    },
+    {
+      "id": "centaur-warrunner",
+      "display": "centaur-warrunner",
+      "pickId": 0
+    },
+    {
+      "id": "chaos-knight",
+      "display": "chaos-knight",
+      "pickId": 0
+    },
+    {
+      "id": "clockwork",
+      "display": "clockwork",
+      "pickId": 0
+    },
+    {
+      "id": "doom",
+      "display": "doom",
+      "pickId": 0
+    },
+    {
+      "id": "dragon-knight",
+      "display": "dragon-knight",
+      "pickId": 0
+    },
+    {
+      "id": "earth-spirit",
+      "display": "earth-spirit",
+      "pickId": 0
+    },
+    {
+      "id": "earth-shaker",
+      "display": "earth-shaker",
+      "pickId": 0
+    },
+    {
+      "id": "elder-titan",
+      "display": "elder-titan",
+      "pickId": 0
+    },
+    {
+      "id": "huskar",
+      "display": "huskar",
+      "pickId": 0
+    },
+    {
+      "id": "io",
+      "display": "io",
+      "pickId": 0
+    },
+    {
+      "id": "kunkka",
+      "display": "kunkka",
+      "pickId": 0
+    },
+    {
+      "id": "legion-commander",
+      "display": "legion-commander",
+      "pickId": 0
+    },
+    {
+      "id": "life-stealer",
+      "display": "life-stealer",
+      "pickId": 0
+    },
+    {
+      "id": "lycan",
+      "display": "lycan",
+      "pickId": 0
+    },
+    {
+      "id": "magnus",
+      "display": "magnus",
+      "pickId": 0
+    },
+    {
+      "id": "night-stalker",
+      "display": "night-stalker",
+      "pickId": 0
+    },
+    {
+      "id": "templar-knight",
+      "display": "templar-knight",
+      "pickId": 0
+    },
+    {
+      "id": "pheonix",
+      "display": "pheonix",
+      "pickId": 0
+    },
+    {
+      "id": "pudge",
+      "display": "pudge",
+      "pickId": 0
+    },
+    {
+      "id": "sand-king",
+      "display": "sand-king",
+      "pickId": 0
+    },
+    {
+      "id": "slardar",
+      "display": "slardar",
+      "pickId": 0
+    },
+    {
+      "id": "spirit-breaker",
+      "display": "spirit-breaker",
+      "pickId": 0
+    },
+    {
+      "id": "sven",
+      "display": "sven",
+      "pickId": 0
+    },
+    {
+      "id": "tide-hunter",
+      "display": "tide-hunter",
+      "pickId": 0
+    },
+    {
+      "id": "timber-saw",
+      "display": "timber-saw",
+      "pickId": 0
+    },
+    {
+      "id": "tiny",
+      "display": "tiny",
+      "pickId": 0
+    },
+    {
+      "id": "treant-protector",
+      "display": "treant-protector",
+      "pickId": 0
+    },
+    {
+      "id": "tusk",
+      "display": "tusk",
+      "pickId": 0
+    },
+    {
+      "id": "underlord",
+      "display": "underlord",
+      "pickId": 0
+    },
+    {
+      "id": "undying",
+      "display": "undying",
+      "pickId": 0
+    },
+    {
+      "id": "wrait-king",
+      "display": "wrait-king",
+      "pickId": 0
+    },
+    {
+      "id": "anti-mage",
+      "display": "anti-mage",
+      "pickId": 0
+    },
+    {
+      "id": "arc-warden",
+      "display": "arc-warden",
+      "pickId": 0
+    },
+    {
+      "id": "blood-seeker",
+      "display": "blood-seeker",
+      "pickId": 0
+    },
+    {
+      "id": "bounty-hunter",
+      "display": "bounty-hunter",
+      "pickId": 0
+    },
+    {
+      "id": "brood-mother",
+      "display": "brood-mother",
+      "pickId": 0
+    },
+    {
+      "id": "clinkz",
+      "display": "clinkz",
+      "pickId": 0
+    },
+    {
+      "id": "drow-ranger",
+      "display": "drow-ranger",
+      "pickId": 0
+    },
+    {
+      "id": "ember-spirit",
+      "display": "ember-spirit",
+      "pickId": 0
+    },
+    {
+      "id": "faceless-void",
+      "display": "faceless-void",
+      "pickId": 0
+    },
+    {
+      "id": "gyrocopter",
+      "display": "gyrocopter",
+      "pickId": 0
+    },
+    {
+      "id": "jugernaut",
+      "display": "jugernaut",
+      "pickId": 0
+    },
+    {
+      "id": "long-druid",
+      "display": "long-druid",
+      "pickId": 0
+    },
+    {
+      "id": "luna",
+      "display": "luna",
+      "pickId": 0
+    },
+    {
+      "id": "medusa",
+      "display": "medusa",
+      "pickId": 0
+    },
+    {
+      "id": "meepo",
+      "display": "meepo",
+      "pickId": 0
+    },
+    {
+      "id": "mirana",
+      "display": "mirana",
+      "pickId": 0
+    },
+    {
+      "id": "monkey-king",
+      "display": "monkey-king",
+      "pickId": 0
+    },
+    {
+      "id": "morphling",
+      "display": "morphling",
+      "pickId": 0
+    },
+    {
+      "id": "naga-siren",
+      "display": "naga-siren",
+      "pickId": 0
+    },
+    {
+      "id": "nyx-assassin",
+      "display": "nyx-assassin",
+      "pickId": 0
+    },
+    {
+      "id": "pangolier",
+      "display": "pangolier",
+      "pickId": 0
+    },
+    {
+      "id": "phantom-assassin",
+      "display": "phantom-assassin",
+      "pickId": 0
+    },
+    {
+      "id": "phantom-lancer",
+      "display": "phantom-lancer",
+      "pickId": 0
+    },
+    {
+      "id": "razor",
+      "display": "razor",
+      "pickId": 0
+    },
+    {
+      "id": "riki",
+      "display": "riki",
+      "pickId": 0
+    },
+    {
+      "id": "shadow-fiend",
+      "display": "shadow-fiend",
+      "pickId": 0
+    },
+    {
+      "id": "slark",
+      "display": "slark",
+      "pickId": 0
+    },
+    {
+      "id": "sniper",
+      "display": "sniper",
+      "pickId": 0
+    },
+    {
+      "id": "spectre",
+      "display": "spectre",
+      "pickId": 0
+    },
+    {
+      "id": "templar-assassin",
+      "display": "templar-assassin",
+      "pickId": 0
+    },
+    {
+      "id": "terror-blade",
+      "display": "terror-blade",
+      "pickId": 0
+    },
+    {
+      "id": "troll-warlord",
+      "display": "troll-warlord",
+      "pickId": 0
+    },
+    {
+      "id": "ursa",
+      "display": "ursa",
+      "pickId": 0
+    },
+    {
+      "id": "vengeful-spirit",
+      "display": "vengeful-spirit",
+      "pickId": 0
+    },
+    {
+      "id": "venomancer",
+      "display": "venomancer",
+      "pickId": 0
+    },
+    {
+      "id": "viper",
+      "display": "viper",
+      "pickId": 0
+    },
+    {
+      "id": "weaver",
+      "display": "weaver",
+      "pickId": 0
+    },
+    {
+      "id": "ancient-appirition",
+      "display": "ancient-appirition",
+      "pickId": 0
+    },
+    {
+      "id": "bane",
+      "display": "bane",
+      "pickId": 0
+    },
+    {
+      "id": "bat-rider",
+      "display": "bat-rider",
+      "pickId": 0
+    },
+    {
+      "id": "chen",
+      "display": "chen",
+      "pickId": 0
+    },
+    {
+      "id": "crystal-maiden",
+      "display": "crystal-maiden",
+      "pickId": 0
+    },
+    {
+      "id": "dark-seer",
+      "display": "dark-seer",
+      "pickId": 0
+    },
+    {
+      "id": "dark-willow",
+      "display": "dark-willow",
+      "pickId": 0
+    },
+    {
+      "id": "dazzle",
+      "display": "dazzle",
+      "pickId": 0
+    },
+    {
+      "id": "death-prophet",
+      "display": "death-prophet",
+      "pickId": 0
+    },
+    {
+      "id": "disruptor",
+      "display": "disruptor",
+      "pickId": 0
+    },
+    {
+      "id": "enchantress",
+      "display": "enchantress",
+      "pickId": 0
+    },
+    {
+      "id": "enigma",
+      "display": "enigma",
+      "pickId": 0
+    },
+    {
+      "id": "invoker",
+      "display": "invoker",
+      "pickId": 0
+    },
+    {
+      "id": "jakiro",
+      "display": "jakiro",
+      "pickId": 0
+    },
+    {
+      "id": "keeper-of-the-light",
+      "display": "keeper-of-the-light",
+      "pickId": 0
+    },
+    {
+      "id": "leshrac",
+      "display": "leshrac",
+      "pickId": 0
+    },
+    {
+      "id": "lich",
+      "display": "lich",
+      "pickId": 0
+    },
+    {
+      "id": "lina",
+      "display": "lina",
+      "pickId": 0
+    },
+    {
+      "id": "lion",
+      "display": "lion",
+      "pickId": 0
+    },
+    {
+      "id": "natures-prophet",
+      "display": "natures-prophet",
+      "pickId": 0
+    },
+    {
+      "id": "necrophos",
+      "display": "necrophos",
+      "pickId": 0
+    },
+    {
+      "id": "ogre-magi",
+      "display": "ogre-magi",
+      "pickId": 0
+    },
+    {
+      "id": "oracle",
+      "display": "oracle",
+      "pickId": 0
+    },
+    {
+      "id": "out-world-devourer",
+      "display": "out-world-devourer",
+      "pickId": 0
+    },
+    {
+      "id": "puck",
+      "display": "puck",
+      "pickId": 0
+    },
+    {
+      "id": "pugna",
+      "display": "pugna",
+      "pickId": 0
+    },
+    {
+      "id": "queen-of-pain",
+      "display": "queen-of-pain",
+      "pickId": 0
+    },
+    {
+      "id": "rubik",
+      "display": "rubik",
+      "pickId": 0
+    },
+    {
+      "id": "shadow-demon",
+      "display": "shadow-demon",
+      "pickId": 0
+    },
+    {
+      "id": "shadow-shamaan",
+      "display": "shadow-shamaan",
+      "pickId": 0
+    },
+    {
+      "id": "silencer",
+      "display": "silencer",
+      "pickId": 0
+    },
+    {
+      "id": "sky-wraith-mage",
+      "display": "sky-wraith-mage",
+      "pickId": 0
+    },
+    {
+      "id": "storm-spirit",
+      "display": "storm-spirit",
+      "pickId": 0
+    },
+    {
+      "id": "techies",
+      "display": "techies",
+      "pickId": 0
+    },
+    {
+      "id": "tinker",
+      "display": "tinker",
+      "pickId": 0
+    },
+    {
+      "id": "visage",
+      "display": "visage",
+      "pickId": 0
+    },
+    {
+      "id": "warlock",
+      "display": "warlock",
+      "pickId": 0
+    },
+    {
+      "id": "wind-ranger",
+      "display": "wind-ranger",
+      "pickId": 0
+    },
+    {
+      "id": "winter-wyvern",
+      "display": "winter-wyvern",
+      "pickId": 0
+    },
+    {
+      "id": "witch-doctor",
+      "display": "witch-doctor",
+      "pickId": 0
+    },
+    {
+      "id": "zeus",
+      "display": "zeus",
+      "pickId": 0
+    }
+  ]
 }

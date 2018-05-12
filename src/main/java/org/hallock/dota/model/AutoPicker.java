@@ -1,7 +1,7 @@
 
 package org.hallock.dota.model;
 
-import org.hallock.dota.control.ApplicationContext;
+import org.hallock.dota.control.Registry;
 
 import java.util.LinkedList;
 
@@ -20,7 +20,7 @@ public class AutoPicker {
     public Identifications identifyPicks() {
         Identifications results = Identifications.createEmptyResults();
         for (StateIdentifier identifier : identifiers) {
-            identifier.identify(ApplicationContext.getInstance().camera, results);
+            identifier.identify(Registry.getInstance().camera, results);
         }
         return results;
     }
