@@ -1,6 +1,7 @@
 package org.hallock.dota.view;
 
 import org.hallock.dota.control.Registry;
+import org.hallock.dota.model.geometry.ImageRowGeometry;
 import org.hallock.dota.util.Logger;
 import org.json.JSONObject;
 
@@ -16,7 +17,7 @@ public class UiBuilder {
         ui.mainPanel = new MainPanel();
 
         ui.mainFrame = new JFrame("Auto picker");
-        ui.mainFrame.setBounds(new Rectangle(50, 50, 500, 500));
+        ui.mainFrame.setBounds(new Rectangle(2000, 50, 500, 500));
         ui.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Util.setContent(ui.mainFrame, ui.mainPanel);
         ui.mainFrame.pack();
@@ -42,7 +43,7 @@ public class UiBuilder {
             Ui.View view
     ) {
         Ui.ViewContainer viewContainer = new Ui.ViewContainer(new JFrame(name), view);
-        viewContainer.frame.setBounds(new Rectangle(50, 50, 500, 500));
+        viewContainer.frame.setBounds(new Rectangle(2000, 50, 500, 500));
         viewContainer.frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         Util.setContent(viewContainer.frame, viewContainer.getPanel());
         viewContainer.frame.pack();
@@ -55,6 +56,8 @@ public class UiBuilder {
         createView(ui, uiSettings, Ui.CONFIGURAION_VIEW,"Configuration Options", new ConfigureOptions());
         createView(ui, uiSettings, Ui.ACCOUNT_SETTINGS_VIEW,"Account Settings", new AccountSettings());
         createView(ui, uiSettings, Ui.GRID_CONFIG_VIEW,"Grid Settings", new GridConfig());
+        createView(ui, uiSettings, Ui.NAME_CONFIG_VIEW, "Name Settings", new RowConfig.PlayerRowConfig());
+        createView(ui, uiSettings, Ui.PICK_CONFIG_VIEW, "Picked Settings", new RowConfig.PickRowConfig());
         createView(ui, uiSettings, Ui.GRID_PREVIEW,"Preview", new GridPreviewer(
                 ImageIO.read(new File("output.png"))
         ));

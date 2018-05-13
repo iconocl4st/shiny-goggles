@@ -1,5 +1,6 @@
 package org.hallock.dota.model;
 
+import org.hallock.dota.control.Config;
 import org.hallock.dota.control.Registry;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -159,16 +160,20 @@ public class Identifications {
                 case Picked:
                     throw new IllegalStateException("Found picked hero, but do not know which team: " + entry.getKey());
                 case Unidentified:
-                    throw new IllegalStateException("Did not determine the state of hero: " + entry.getKey());
+                    // throw new IllegalStateException("Did not determine the state of hero: " + entry.getKey());
+                    System.out.println("Did not determine the state of hero: " + entry.getKey());
+                    break;
                 default:
                     throw new IllegalStateException("I added a state with adding it to this switch statement.");
             }
         }
 
         if (userTeam == null) {
-            throw new IllegalStateException("Did not find the team for the user");
+//            throw new IllegalStateException("Did not find the team for the user");
+            System.out.println("Did not find the team for the user");
+        } else {
+            results.playerIsRadiant = userTeam.equals(Team.RADIANT);
         }
-        results.playerIsRadiant = userTeam.equals(Team.RADIANT);
 
         return results;
     }
@@ -188,13 +193,14 @@ public class Identifications {
 
         public JSONObject toJson() throws JSONException {
             if (playerIsRadiant == null) {
-                throw new IllegalStateException("Player team not given!");
+//                throw new IllegalStateException("Player team not given!");
+                playerIsRadiant = true;
             }
 
             LinkedList<Integer> radiantBan = new LinkedList<>();
             LinkedList<Integer> direBan = new LinkedList<>();
             for (Integer i : banned) {
-                if (radiantBan.size() >= 5) {
+                if (radiantBan.size() >= Config.TEAM_LENGTH) {
                     direBan.add(i);
                 } else {
                     radiantBan.add(i);
@@ -211,7 +217,6 @@ public class Identifications {
             returnValue.put("direBan", jsonArray(direBan));
             returnValue.put("unavailableHeroes", jsonArray(unavailable));
             returnValue.put("app", Registry.getInstance().config.appName);
-
             return returnValue;
         }
     }

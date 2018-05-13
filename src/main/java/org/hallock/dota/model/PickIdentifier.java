@@ -1,6 +1,6 @@
 package org.hallock.dota.model;
 
-import org.hallock.dota.util.Camera;
+import org.hallock.dota.util.Cameras.Camera;
 
 public class PickIdentifier implements StateIdentifier {
     Team team;

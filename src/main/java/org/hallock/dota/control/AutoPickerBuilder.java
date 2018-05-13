@@ -28,29 +28,24 @@ public class AutoPickerBuilder {
             @Override
             public void visit(JSONObject config, Rectangle location) throws JSONException {
                 Hero hero = Registry.getInstance().heroes.getHero(config.getString("hero"));
-
                 LinkedList<HeroIdentification> list = new LinkedList<>();
-                if (config.has("banned-images")) {
-                    list.add(new HeroIdentification(
-                            HeroState.Banned,
-                            new BufferedImage[]{getImage(config.getString("banned-image"))}
-                    ));
-                }
-                if (config.has("available-images")) {
-                    list.add(new HeroIdentification(
-                            HeroState.Available,
-                            new BufferedImage[]{getImage(config.getString("available-image"))}
-                    ));
-                }
-                if (config.has("unavailable-images")) {
-                    list.add(new HeroIdentification(
-                            HeroState.Picked,
-                            new BufferedImage[]{getImage(config.getString("unavailable-image"))}
-                    ));
-                }
+                list.add(new HeroIdentification(
+                        hero,
+                        HeroState.Banned,
+                        hero.getImagesByType(HeroState.Banned)
+                ));
+                list.add(new HeroIdentification(
+                        hero,
+                        HeroState.Available,
+                        hero.getImagesByType(HeroState.Available)
+                ));
+                list.add(new HeroIdentification(
+                        hero,
+                        HeroState.Unavailable,
+                        hero.getImagesByType(HeroState.Unavailable)
+                ));
                 identifiers.addLast(new HeroIdentifier(
                         location,
-                        hero,
                         list.toArray(new HeroIdentification[0])
                 ));
             }
@@ -62,46 +57,41 @@ public class AutoPickerBuilder {
             LinkedList<StateIdentifier> identifiers,
             ImageRowGeometry grid
     ) throws JSONException {
-//        JSONArray radiantArray = pickConfig.getJSONArray("radiant");
-//        for (int i=0;i<radiantArray.length(); i++) {
-//            JSONObject heroObj = radiantArray.getJSONObject(i);
-//            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
-//            Rectangle location = new Rectangle();
-//            identifiers.add(new HeroIdentifier(
-//                    location,
-//                    hero,
-//                    new HeroIdentification[]{
-//                            new HeroIdentification(
-//                                    HeroState.PickedRadiant,
-//                                    new BufferedImage[]{getImage(heroObj.getString("picked-image"))}
-//                        )
-//                    }
-//            ));
-//        }
-//        JSONArray direArray = pickConfig.getJSONArray("dire");
-//        for (int i=0;i<direArray.length(); i++) {
-//            JSONObject heroObj = radiantArray.getJSONObject(i);
-//            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
-//            Rectangle location = new Rectangle();
-//            identifiers.add(new HeroIdentifier(
-//                    location,
-//                    hero,
-//                    new HeroIdentification[] {
-//                            new HeroIdentification(
-//                                    HeroState.PickedDire,
-//                                    new BufferedImage[]{getImage(heroObj.getString("picked-image"))}
-//                            )
-//                    }
-//            ));
-//        }
+        final Heroes heroes = Registry.getInstance().heroes;
+        GridEnumerator.enumerateGrid(
+                grid,
+                new GridEnumerator.RowItemVisitor() {
+                    @Override
+                    public void visit(Rectangle location, Team team, int idx) {
+                        LinkedList<HeroIdentification> identifications = new LinkedList<>();
+                        HeroState picked = team.equals(Team.RADIANT) ? HeroState.PickedRadiant : HeroState.PickedDire;
+                        for (Hero hero : heroes.getAll()) {
+                            identifications.add(new HeroIdentification(
+                                    hero,
+                                    picked,
+                                    hero.getImagesByType(HeroState.Picked)
+                            ));
+                        }
+                        identifiers.add(new HeroIdentifier(location, identifications.toArray(new HeroIdentification[0])));
+                    }
+                }
+        );
     }
 
 
     private static void addPlayerIdentifier(
-            LinkedList<StateIdentifier> identifiers,
+            final LinkedList<StateIdentifier> identifiers,
             ImageRowGeometry grid
     ) {
-
+        GridEnumerator.enumerateGrid(
+                grid,
+                new GridEnumerator.RowItemVisitor() {
+                    @Override
+                    public void visit(Rectangle location, Team team, int idx) {
+                        identifiers.add(new UserIdentifier(team, location, idx));
+                    }
+                }
+        );
     }
 
     public static LinkedList<StateIdentifier> builIdentifiers() throws JSONException {

@@ -2,24 +2,24 @@
 package org.hallock.dota.control;
 
 import org.hallock.dota.model.Heroes;
-import org.hallock.dota.model.Identifications;
+
+import org.hallock.dota.model.Team;
 import org.hallock.dota.model.geometry.GridEnumerator;
-import org.hallock.dota.model.geometry.HeroGridGeometry;
-import org.hallock.dota.util.Camera;
+import org.hallock.dota.util.Cameras;
 import org.hallock.dota.util.Logger;
 import org.hallock.dota.util.NetworkManager;
 import org.hallock.dota.util.Serializer;
-import org.hallock.dota.view.ImageViewer;
+
 import org.hallock.dota.view.UiBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Timer;
 
@@ -32,7 +32,7 @@ public class Driver {
                     "./config/config.json",
                     Serializer.readFile(Paths.get("./config/config.json"))
             );
-            Registry.registry.camera = Camera.buildCamera();
+            Registry.registry.camera = Cameras.buildCamera();
             Registry.registry.heroes = Heroes.buildHeroes(
                     Serializer.readFile(Paths.get(Registry.getInstance().config.heroConfigFile))
             );
@@ -49,6 +49,13 @@ public class Driver {
             Registry.registry.runner.start();
 
             Registry.registry.logger.log("Started Application");
+
+            takeSomePictures();
+
+
+            System.exit(0);
+
+//            System.out.println(Registry.registry.picker.identifyPicks().toJson().toString(2));
 
 //            // 1, 2, 3, 4, 5, 6
 //            // anti-mage, axe, bane, blood-seeker, crystal-maiden
@@ -80,5 +87,57 @@ public class Driver {
             e.printStackTrace();
             System.exit(-1);
         }
+    }
+
+    private static Path getPathOutput(String baseString) {
+        int counter = 0;
+        Path p;
+        while (Files.exists(p = Paths.get("./output/").resolve(
+                String.format("%s_%04d.png", baseString, counter)
+        ))) {
+            counter++;
+        }
+        return p;
+    }
+
+    public static void takeSomePictures() throws JSONException, AWTException, IOException {
+        Robot robot = new Robot();
+        GridEnumerator.enumerateGrid(Registry.getInstance().gridGeometry, Registry.getInstance().gridConfig, new GridEnumerator.GridItemVisitor() {
+            @Override
+            public void visit(JSONObject config, Rectangle location) throws JSONException {
+                BufferedImage image = robot.createScreenCapture(location);
+                Path path = getPathOutput("unknown_hero");
+                try {
+                    ImageIO.write(image, "png", path.toFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        GridEnumerator.enumerateGrid(Registry.getInstance().nameGeometry, new GridEnumerator.RowItemVisitor() {
+            @Override
+            public void visit(Rectangle location, Team team, int idx) {
+                BufferedImage image = robot.createScreenCapture(location);
+                Path path = getPathOutput("unknown_name_" + idx + "_" + team.name() + "_");
+                try {
+                    ImageIO.write(image, "png", path.toFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        GridEnumerator.enumerateGrid(Registry.getInstance().pickedGeometry, new GridEnumerator.RowItemVisitor() {
+            @Override
+            public void visit(Rectangle location, Team team, int idx) {
+                BufferedImage image = robot.createScreenCapture(location);
+                Path path = getPathOutput("unknown_pick_" + idx + "_" + team.name() + "_");
+                try {
+                    ImageIO.write(image, "png", path.toFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

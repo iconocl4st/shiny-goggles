@@ -4,7 +4,7 @@ import org.hallock.dota.model.AutoPicker;
 import org.hallock.dota.model.Heroes;
 import org.hallock.dota.model.geometry.HeroGridGeometry;
 import org.hallock.dota.model.geometry.ImageRowGeometry;
-import org.hallock.dota.util.Camera;
+import org.hallock.dota.util.Cameras.Camera;
 import org.hallock.dota.util.Logger;
 import org.hallock.dota.util.NetworkManager;
 import org.hallock.dota.view.Ui;

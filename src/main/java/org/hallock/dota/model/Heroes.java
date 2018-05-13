@@ -15,18 +15,19 @@ public class Heroes {
     }
 
     public Hero getHero(String id) {
-        return heroes.get(id);
+        Hero returnValue = heroes.get(id);
+        if (returnValue == null) {
+            throw new IllegalArgumentException("Unknown hero: " + id);
+        }
+        return returnValue;
     }
 
     public static Heroes buildHeroes(JSONObject heroConfig) throws JSONException {
         JSONArray array = heroConfig.getJSONArray("heroes");
         HashMap<String, Hero> heroes = new HashMap<>();
         for (int i=0; i<array.length(); i++) {
-            JSONObject hero = array.getJSONObject(i);
-            String id = hero.getString("id");
-            Integer pickerId = hero.getInt("pickId");
-            String display = hero.getString("display");
-            heroes.put(id, new Hero(id, pickerId, display));
+            Hero hero = new Hero(array.getJSONObject(i));
+            heroes.put(hero.id, hero);
         }
         return new Heroes(heroes);
     }

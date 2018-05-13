@@ -10,6 +10,8 @@ import org.hallock.dota.model.geometry.HeroGridGeometry;
 import org.hallock.dota.view.Ui.View;
 import org.json.JSONException;
 
+import java.io.IOException;
+
 /**
  *
  * @author thallock
@@ -274,6 +276,8 @@ public class GridConfig extends javax.swing.JPanel implements View {
             preview.drawGrid(getGeometry());
         } catch (JSONException e) {
             Registry.getInstance().logger.log("Unable to show geometry", e);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     

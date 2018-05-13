@@ -1,11 +1,13 @@
 package org.hallock.dota.model.geometry;
 
+import org.hallock.dota.control.Config;
 import org.hallock.dota.model.Team;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class GridEnumerator {
 
@@ -47,11 +49,10 @@ public class GridEnumerator {
             ImageRowGeometry grid,
             RowItemVisitor visitor
     ) {
-        int TEAM_LENGTH = 5;
         int currentX = grid.startX;
         int currentY = grid.startY;
         for (Team team : new Team[]{ Team.RADIANT, Team.DIRE }) {
-            for (int i=0; i<TEAM_LENGTH; i++) {
+            for (int i=0; i<Config.TEAM_LENGTH; i++) {
                 Rectangle location = new Rectangle(currentX, currentY, grid.width, grid.height);
                 visitor.visit(location, team, i);
                 currentX += grid.width + grid.horizontalGap;

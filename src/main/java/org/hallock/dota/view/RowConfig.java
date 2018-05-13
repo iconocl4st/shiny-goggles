@@ -5,11 +5,17 @@
  */
 package org.hallock.dota.view;
 
+import org.hallock.dota.control.Registry;
+import org.hallock.dota.model.geometry.ImageRowGeometry;
+import org.json.JSONException;
+
+import java.io.IOException;
+
 /**
  *
  * @author thallock
  */
-public class RowConfig extends javax.swing.JPanel {
+public abstract class RowConfig extends javax.swing.JPanel implements Ui.View {
 
     /**
      * Creates new form RowConfig
@@ -39,6 +45,8 @@ public class RowConfig extends javax.swing.JPanel {
         startXSpinner = new javax.swing.JSpinner();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        teamGapSpinner = new javax.swing.JSpinner();
 
         jLabel1.setText("Start x:");
 
@@ -49,6 +57,41 @@ public class RowConfig extends javax.swing.JPanel {
         jLabel4.setText("Height:");
 
         jLabel5.setText("Horizontal gap:");
+
+        horizontalGapSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        horizontalGapSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                horizontalGapSpinnerStateChanged(evt);
+            }
+        });
+
+        heightSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        heightSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                heightSpinnerStateChanged(evt);
+            }
+        });
+
+        withSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        withSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                withSpinnerStateChanged(evt);
+            }
+        });
+
+        startYSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        startYSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                startYSpinnerStateChanged(evt);
+            }
+        });
+
+        startXSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        startXSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                startXSpinnerStateChanged(evt);
+            }
+        });
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +107,15 @@ public class RowConfig extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setText("Team gap:");
+
+        teamGapSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        teamGapSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                teamGapSpinnerStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,24 +124,26 @@ public class RowConfig extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 97, Short.MAX_VALUE)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(horizontalGapSpinner)
                             .addComponent(heightSpinner)
                             .addComponent(withSpinner)
                             .addComponent(startYSpinner)
-                            .addComponent(startXSpinner)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(startXSpinner)
+                            .addComponent(teamGapSpinner))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,6 +169,10 @@ public class RowConfig extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(horizontalGapSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(teamGapSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
@@ -124,12 +182,36 @@ public class RowConfig extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+        save();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        hideViews();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void teamGapSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_teamGapSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_teamGapSpinnerStateChanged
+
+    private void horizontalGapSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_horizontalGapSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_horizontalGapSpinnerStateChanged
+
+    private void heightSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_heightSpinnerStateChanged
+
+    private void withSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_withSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_withSpinnerStateChanged
+
+    private void startYSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startYSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_startYSpinnerStateChanged
+
+    private void startXSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startXSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_startXSpinnerStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -141,9 +223,93 @@ public class RowConfig extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton saveButton;
     private javax.swing.JSpinner startXSpinner;
     private javax.swing.JSpinner startYSpinner;
+    private javax.swing.JSpinner teamGapSpinner;
     private javax.swing.JSpinner withSpinner;
     // End of variables declaration//GEN-END:variables
+
+
+
+    public void refresh(ImageRowGeometry gridGeometry) {
+        startXSpinner.setValue(gridGeometry.startX);
+        startYSpinner.setValue(gridGeometry.startY);
+        withSpinner.setValue(gridGeometry.width);
+        heightSpinner.setValue(gridGeometry.height);
+        horizontalGapSpinner.setValue(gridGeometry.horizontalGap);
+        teamGapSpinner.setValue(gridGeometry.teamGap);
+        refreshPreview();
+    }
+    
+    abstract void save();
+    
+    abstract void hideViews();
+
+    abstract ImageRowGeometry loadGeometry();
+
+    public final void refresh() {
+        refresh(loadGeometry());
+    }
+
+    public void refreshPreview() {
+        // Registry.getInstance().ui.show(Ui.GRID_PREVIEW);
+        GridPreviewer preview = (GridPreviewer) Registry.getInstance().ui.getView(Ui.GRID_PREVIEW).panel;
+        try {
+            preview.drawGrid(getGeometry());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ImageRowGeometry getGeometry() {
+        ImageRowGeometry gridGeometry = new ImageRowGeometry();
+        gridGeometry.startX = (Integer) startXSpinner.getValue();
+        gridGeometry.startY = (Integer) startYSpinner.getValue();
+        gridGeometry.teamGap = (Integer) teamGapSpinner.getValue();
+        gridGeometry.horizontalGap = (Integer) horizontalGapSpinner.getValue();
+        gridGeometry.width = (Integer) withSpinner.getValue();
+        gridGeometry.height = (Integer) heightSpinner.getValue();
+        return gridGeometry;
+    }
+
+
+    public static class PickRowConfig extends RowConfig {
+        @Override
+        void save() {
+            Registry.getInstance().pickedGeometry = getGeometry();
+
+        }
+
+        @Override
+        void hideViews() {
+            Registry.getInstance().ui.hide(Ui.PICK_CONFIG_VIEW);
+            Registry.getInstance().ui.hide(Ui.GRID_PREVIEW);
+        }
+
+        @Override
+        ImageRowGeometry loadGeometry() {
+            return Registry.getInstance().pickedGeometry;
+        }
+    }
+    public static class PlayerRowConfig extends RowConfig {
+        @Override
+        void save() {
+            Registry.getInstance().nameGeometry = getGeometry();
+        }
+
+        @Override
+        void hideViews() {
+            Registry.getInstance().ui.hide(Ui.NAME_CONFIG_VIEW);
+            Registry.getInstance().ui.hide(Ui.GRID_PREVIEW);
+        }
+
+        @Override
+        ImageRowGeometry loadGeometry() {
+            return Registry.getInstance().nameGeometry;
+        }
+    }
 }

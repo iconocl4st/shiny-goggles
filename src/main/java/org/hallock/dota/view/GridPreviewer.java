@@ -1,8 +1,10 @@
 package org.hallock.dota.view;
 
 import org.hallock.dota.control.Registry;
+import org.hallock.dota.model.Team;
 import org.hallock.dota.model.geometry.GridEnumerator;
 import org.hallock.dota.model.geometry.HeroGridGeometry;
+import org.hallock.dota.model.geometry.ImageRowGeometry;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.io.IOException;
 
 public class GridPreviewer extends ImageViewer implements Ui.View {
     BufferedImage original;
@@ -18,7 +21,7 @@ public class GridPreviewer extends ImageViewer implements Ui.View {
         this.original = template;
     }
 
-    void drawGrid(final HeroGridGeometry geometry) throws JSONException {
+    void drawGrid(final HeroGridGeometry geometry) throws JSONException, IOException {
         BufferedImage image = deepCopy(original);
         final Graphics graphics = image.getGraphics();
         graphics.setColor(Color.red);
@@ -31,6 +34,23 @@ public class GridPreviewer extends ImageViewer implements Ui.View {
                         graphics.drawString(config.getString("hero"), location.x, location.y + location.height / 2);
                         graphics.drawRect(location.x, location.y, location.width, location.height);
 
+                    }
+                }
+        );
+        setImage(image);
+        repaint();
+    }
+
+    void drawGrid(final ImageRowGeometry geometry) throws JSONException, IOException {
+        BufferedImage image = deepCopy(original);
+        final Graphics graphics = image.getGraphics();
+        graphics.setColor(Color.red);
+        GridEnumerator.enumerateGrid(
+                geometry,
+                new GridEnumerator.RowItemVisitor() {
+                    @Override
+                    public void visit(Rectangle location, Team team, int idx) {
+                        graphics.drawRect(location.x, location.y, location.width, location.height);
                     }
                 }
         );

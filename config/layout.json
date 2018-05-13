@@ -1,16 +1,33 @@
 {
   "players": {
     "geometry": {
-
+      "start-x": 165,
+      "start-y": 77,
+      "width": 118,
+      "height": 25,
+      "horizontal-gap": 6,
+      "team-gap": 362
     }
   },
   "picks": {
     "geometry": {
-
+      "start-x": 165,
+      "start-y": 0,
+      "width": 118,
+      "height": 72,
+      "horizontal-gap": 6,
+      "team-gap": 362
     }
   },
   "grid": {
     "geometry": {
+      "horizontal-gap": 7,
+      "vertical-gap": 6,
+      "type-vertical-gap": 32,
+      "hero-width": 45,
+      "hero-height": 73,
+      "start-x": 172,
+      "start-y": 188
     },
     "config": {
       "types": [
@@ -35,7 +52,7 @@
               "hero": "bristle-back"
             },
             {
-              "hero": "centuor-war-runner"
+              "hero": "centaur-warrunner"
             },
             {
               "hero": "chaos-knight"

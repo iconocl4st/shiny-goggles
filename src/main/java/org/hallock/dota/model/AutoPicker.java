@@ -16,11 +16,11 @@ public class AutoPicker {
         this.identifiers = identifiers;
     }
 
-    public Identifications identifyPicks() {
+    public Identifications.IdentificationResults identifyPicks() {
         Identifications results = Identifications.createEmptyResults();
         for (StateIdentifier identifier : identifiers) {
             identifier.identify(Registry.getInstance().camera, results);
         }
-        return results;
+        return results.getResults();
     }
 }

@@ -26,6 +26,8 @@ public class Config {
     public int comparisonParameter = 2;
     public String appName;
 
+    public static final int TEAM_LENGTH = 5;
+
     public Config(String path, JSONObject config) throws JSONException {
         this.path = path;
         this.heroConfigFile = config.getString("heroes-file");

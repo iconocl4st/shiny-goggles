@@ -21,8 +21,7 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
         initComponents();
     }
     
-    public void refresh() {
-    }
+    public void refresh() {}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,11 +88,13 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
     }//GEN-LAST:event_gridButtonActionPerformed
 
     private void pickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.show(Ui.PICK_CONFIG_VIEW);
+        Registry.getInstance().ui.show(Ui.GRID_PREVIEW);
     }//GEN-LAST:event_pickButtonActionPerformed
 
     private void nameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.show(Ui.NAME_CONFIG_VIEW);
+        Registry.getInstance().ui.show(Ui.GRID_PREVIEW);
     }//GEN-LAST:event_nameButtonActionPerformed
 
 

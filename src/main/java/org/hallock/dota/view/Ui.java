@@ -55,4 +55,6 @@ public class Ui {
     static final String ACCOUNT_SETTINGS_VIEW = "account-settings";
     static final String GRID_CONFIG_VIEW = "grid-config";
     static final String GRID_PREVIEW = "grid-preview";
+    static final String NAME_CONFIG_VIEW = "names-preview";
+    static final String PICK_CONFIG_VIEW = "pick-preview";
 }
