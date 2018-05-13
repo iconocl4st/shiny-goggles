@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -101,6 +102,8 @@ public class Driver {
     }
 
     public static void takeSomePictures() throws JSONException, AWTException, IOException {
+        Color c = new Color(ImageIO.read(new File("output.png")).getRGB(227, 88));
+        System.out.println(c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
         Robot robot = new Robot();
         GridEnumerator.enumerateGrid(Registry.getInstance().gridGeometry, Registry.getInstance().gridConfig, new GridEnumerator.GridItemVisitor() {
             @Override

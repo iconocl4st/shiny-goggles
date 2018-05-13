@@ -20,15 +20,18 @@ public class UserIdentifier implements StateIdentifier {
     @Override
     public void identify(Cameras.Camera camera, Identifications pickedState) {
         BufferedImage image = camera.shoot(location);
-        HashSet<String> colors = new HashSet<>();
+
+        int count = 0;
         for (int i=0;i<image.getWidth();i++) {
             for (int j=0;j<image.getHeight();j++) {
                 Color color = new Color(image.getRGB(i, j));
-
-                String colorString = "#" + color.getRed() + "," + color.getGreen() + "," + color.getBlue();
-                colors.add(colorString);
+                if (color.getRed() != 255) continue;
+                if (color.getGreen() != 255) continue;
+                if (color.getBlue() != 255) continue;
+                count++;
             }
         }
-        System.out.println(idx + "," + team + "," + location + "," + colors);
+
+        System.out.println(idx + "," + team + "," + location + "," + count);
     }
 }
