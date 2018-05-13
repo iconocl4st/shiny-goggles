@@ -1,13 +1,12 @@
 package org.hallock.dota.model;
 
 import org.hallock.dota.control.Registry;
-import org.hallock.dota.util.Cameras.Camera;
 import org.hallock.dota.util.OneIdea;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class HeroIdentifier implements StateIdentifier {
+public abstract class HeroIdentifier implements StateIdentifier {
     Rectangle location;
     HeroIdentification[] possibleStates;
 
@@ -27,6 +26,10 @@ public class HeroIdentifier implements StateIdentifier {
                         observed,
                         Registry.getInstance().config.comparisonParameter
                 );
+                System.out.println("The distance: " + distance);
+                if (distance > 500) {
+                    continue;
+                }
                 if (distance > minimumDistance) {
                     continue;
                 }
@@ -35,13 +38,5 @@ public class HeroIdentifier implements StateIdentifier {
             }
         }
         return minimum;
-    }
-
-    public void identify(Camera camera, Identifications state) {
-        HeroIdentification identification = getMinimumIdentificationCost(camera.shoot(location));
-        if (identification == null) {
-            return;
-        }
-        state.heroIdentified(identification.hero, identification.state);
     }
 }

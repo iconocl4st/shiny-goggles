@@ -10,8 +10,6 @@ import org.hallock.dota.util.NetworkManager;
 import org.hallock.dota.view.Ui;
 import org.json.JSONObject;
 
-import javax.swing.*;
-
 public class Registry {
     public Ui ui;
     public Config config;

@@ -35,6 +35,7 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
         gridButton = new javax.swing.JButton();
         pickButton = new javax.swing.JButton();
         nameButton = new javax.swing.JButton();
+        openDebugPanel = new javax.swing.JButton();
 
         gridButton.setText("Configure Grid");
         gridButton.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +58,13 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
             }
         });
 
+        openDebugPanel.setText("Show Debug View");
+        openDebugPanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openDebugPanelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,7 +74,8 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameButton, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                     .addComponent(pickButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gridButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(gridButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(openDebugPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -78,6 +87,8 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
                 .addComponent(pickButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(openDebugPanel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -97,10 +108,15 @@ public class ConfigureOptions extends javax.swing.JPanel implements View {
         Registry.getInstance().ui.show(Ui.GRID_PREVIEW);
     }//GEN-LAST:event_nameButtonActionPerformed
 
+    private void openDebugPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDebugPanelActionPerformed
+        Registry.getInstance().ui.show(Ui.DEBUG_VIEW);
+    }//GEN-LAST:event_openDebugPanelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton gridButton;
     private javax.swing.JButton nameButton;
+    private javax.swing.JButton openDebugPanel;
     private javax.swing.JButton pickButton;
     // End of variables declaration//GEN-END:variables
 }

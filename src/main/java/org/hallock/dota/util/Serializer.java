@@ -3,11 +3,12 @@ package org.hallock.dota.util;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.json.JSONWriter;
 
 import java.awt.*;
-import java.io.*;
-import java.nio.file.Files;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Path;
 
 public class Serializer {

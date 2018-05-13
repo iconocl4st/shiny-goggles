@@ -12,9 +12,9 @@
   "picks": {
     "geometry": {
       "start-x": 165,
-      "start-y": 0,
+      "start-y": 7,
       "width": 118,
-      "height": 72,
+      "height": 64,
       "horizontal-gap": 6,
       "team-gap": 362
     }
@@ -43,66 +43,66 @@
               "hero": "axe"
             },
             {
-              "hero": "beast-master"
+              "hero": "beast_master"
             },
             {
-              "hero": "brew-master"
+              "hero": "brew_master"
             },
             {
-              "hero": "bristle-back"
+              "hero": "bristleback"
             },
             {
-              "hero": "centaur-warrunner"
+              "hero": "centaur"
             },
             {
-              "hero": "chaos-knight"
+              "hero": "chaos_knight"
             },
             {
-              "hero": "clockwork"
+              "hero": "rattletrap"
             },
             {
-              "hero": "doom"
+              "hero": "doom_bringer"
             },
             {
-              "hero": "dragon-knight"
+              "hero": "dragon_knight"
             },
             {
-              "hero": "earth-spirit"
+              "hero": "earth_spirit"
             },
             {
-              "hero": "earth-shaker"
+              "hero": "earth_shaker"
             },
             {
-              "hero": "elder-titan"
+              "hero": "elder_titan"
             },
             {
               "hero": "huskar"
             },
             {
-              "hero": "io"
+              "hero": "wisp"
             },
             {
               "hero": "kunkka"
             },
             {
-              "hero": "legion-commander"
+              "hero": "legion_commander"
             },
             {
-              "hero": "life-stealer"
+              "hero": "life_stealer"
             },
             {
               "hero": "lycan"
             },
             {
-              "hero": "magnus"
+              "hero": "magnataur"
             }
           ],
           [
             {
-              "hero": "night-stalker"
+              "hero": "night_stalker"
             },
             {
-              "hero": "templar-knight"
+              "hero": "omniknight"
             },
             {
               "hero": "pheonix"
@@ -111,80 +111,80 @@
               "hero": "pudge"
             },
             {
-              "hero": "sand-king"
+              "hero": "sand_king"
             },
             {
               "hero": "slardar"
             },
             {
-              "hero": "spirit-breaker"
+              "hero": "spirit_breaker"
             },
             {
               "hero": "sven"
             },
             {
-              "hero": "tide-hunter"
+              "hero": "tide_hunter"
             },
             {
-              "hero": "timber-saw"
+              "hero": "shredder"
             },
             {
               "hero": "tiny"
             },
             {
-              "hero": "treant-protector"
+              "hero": "treant"
             },
             {
               "hero": "tusk"
             },
             {
-              "hero": "underlord"
+              "hero": "abyssal_underlord"
             },
             {
               "hero": "undying"
             },
             {
-              "hero": "wrait-king"
+              "hero": "skeleton_king"
             }
           ]
         ],
         [
           [
             {
-              "hero": "anti-mage"
+              "hero": "antimage"
             },
             {
-              "hero": "arc-warden"
+              "hero": "arc_warden"
             },
             {
-              "hero": "blood-seeker"
+              "hero": "blood_seeker"
             },
             {
-              "hero": "bounty-hunter"
+              "hero": "bounty_hunter"
             },
             {
-              "hero": "brood-mother"
+              "hero": "brood_mother"
             },
             {
               "hero": "clinkz"
             },
             {
-              "hero": "drow-ranger"
+              "hero": "drow_ranger"
             },
             {
-              "hero": "ember-spirit"
+              "hero": "ember_spirit"
             },
             {
-              "hero": "faceless-void"
+              "hero": "faceless_void"
             },
             {
               "hero": "gyrocopter"
             },
             {
-              "hero": "jugernaut"
+              "hero": "juggernaut"
             },
             {
-              "hero": "long-druid"
+              "hero": "lone_druid"
             },
             {
               "hero": "luna"
@@ -199,16 +199,16 @@
               "hero": "mirana"
             },
             {
-              "hero": "monkey-king"
+              "hero": "monkey_king"
             },
             {
               "hero": "morphling"
             },
             {
-              "hero": "naga-siren"
+              "hero": "naga_siren"
             },
             {
-              "hero": "nyx-assassin"
+              "hero": "nyx_assassin"
             },
             {
               "hero": "pangolier"
@@ -216,10 +216,10 @@
           ],
           [
             {
-              "hero": "phantom-assassin"
+              "hero": "phantom_assassin"
             },
             {
-              "hero": "phantom-lancer"
+              "hero": "phantom_lancer"
             },
             {
               "hero": "razor"
@@ -228,7 +228,7 @@
               "hero": "riki"
             },
             {
-              "hero": "shadow-fiend"
+              "hero": "nevermore"
             },
             {
               "hero": "slark"
@@ -240,19 +240,19 @@
               "hero": "spectre"
             },
             {
-              "hero": "templar-assassin"
+              "hero": "templar_assassin"
             },
             {
-              "hero": "terror-blade"
+              "hero": "terror_blade"
             },
             {
-              "hero": "troll-warlord"
+              "hero": "troll_warlord"
             },
             {
               "hero": "ursa"
             },
             {
-              "hero": "vengeful-spirit"
+              "hero": "vengeful_spirit"
             },
             {
               "hero": "venomancer"
@@ -268,31 +268,31 @@
         [
           [
             {
-              "hero": "ancient-appirition"
+              "hero": "ancient_apparition"
             },
             {
               "hero": "bane"
             },
             {
-              "hero": "bat-rider"
+              "hero": "bat_rider"
             },
             {
               "hero": "chen"
             },
             {
-              "hero": "crystal-maiden"
+              "hero": "crystal_maiden"
             },
             {
-              "hero": "dark-seer"
+              "hero": "dark_seer"
             },
             {
-              "hero": "dark-willow"
+              "hero": "dark_willow"
             },
             {
               "hero": "dazzle"
             },
             {
-              "hero": "death-prophet"
+              "hero": "death_prophet"
             },
             {
               "hero": "disruptor"
@@ -310,7 +310,7 @@
               "hero": "jakiro"
             },
             {
-              "hero": "keeper-of-the-light"
+              "hero": "keeper_of_the_light"
             },
             {
               "hero": "leshrac"
@@ -325,21 +325,21 @@
               "hero": "lion"
             },
             {
-              "hero": "natures-prophet"
+              "hero": "furion"
             },
             {
-              "hero": "necrophos"
+              "hero": "necrolyte"
             }
           ],
           [
             {
-              "hero": "ogre-magi"
+              "hero": "ogre_magi"
             },
             {
               "hero": "oracle"
             },
             {
-              "hero": "out-world-devourer"
+              "hero": "obsidian_destroyer"
             },
             {
               "hero": "puck"
@@ -348,25 +348,25 @@
               "hero": "pugna"
             },
             {
-              "hero": "queen-of-pain"
+              "hero": "queen_of_pain"
             },
             {
-              "hero": "rubik"
+              "hero": "rubick"
             },
             {
-              "hero": "shadow-demon"
+              "hero": "shadow_demon"
             },
             {
-              "hero": "shadow-shamaan"
+              "hero": "shadow_shaman"
             },
             {
               "hero": "silencer"
             },
             {
-              "hero": "sky-wraith-mage"
+              "hero": "skywrath_mage"
             },
             {
-              "hero": "storm-spirit"
+              "hero": "storm_spirit"
             },
             {
               "hero": "techies"
@@ -381,13 +381,13 @@
               "hero": "warlock"
             },
             {
-              "hero": "wind-ranger"
+              "hero": "wind_runner"
             },
             {
-              "hero": "winter-wyvern"
+              "hero": "winter_wyvern"
             },
             {
-              "hero": "witch-doctor"
+              "hero": "witch_doctor"
             },
             {
               "hero": "zeus"

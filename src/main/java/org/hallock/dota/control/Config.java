@@ -1,7 +1,5 @@
 package org.hallock.dota.control;
 
-import org.hallock.dota.model.geometry.HeroGridGeometry;
-import org.hallock.dota.model.geometry.ImageRowGeometry;
 import org.hallock.dota.util.Serializer;
 import org.json.JSONException;
 import org.json.JSONObject;

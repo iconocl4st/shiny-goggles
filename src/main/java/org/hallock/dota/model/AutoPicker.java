@@ -21,6 +21,12 @@ public class AutoPicker {
         for (StateIdentifier identifier : identifiers) {
             identifier.identify(Registry.getInstance().camera, results);
         }
-        return results.getResults();
+        LinkedList<UnIdentifiedImage> unIdentifiedImages = results.getUnidentified();
+        if (!unIdentifiedImages.isEmpty()) {
+            Registry.getInstance().ui.showUnidentifiedHeroes(unIdentifiedImages);
+        }
+        Identifications.IdentificationResults picks = results.getResults();
+        Registry.getInstance().ui.setPicks(picks);
+        return picks;
     }
 }

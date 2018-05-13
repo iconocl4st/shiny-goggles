@@ -1,14 +1,15 @@
 package org.hallock.dota.view;
 
 import org.hallock.dota.control.Registry;
-import org.hallock.dota.model.geometry.ImageRowGeometry;
 import org.hallock.dota.util.Logger;
 import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -21,7 +22,6 @@ public class UiBuilder {
         ui.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Util.setContent(ui.mainFrame, ui.mainPanel);
         ui.mainFrame.pack();
-        ui.mainFrame.setVisible(true);
         Registry.getInstance().logger.addOutput(new Logger.LogOutput() {
             @Override
             public void log(String string) {
@@ -55,6 +55,8 @@ public class UiBuilder {
 
         createView(ui, uiSettings, Ui.CONFIGURAION_VIEW,"Configuration Options", new ConfigureOptions());
         createView(ui, uiSettings, Ui.ACCOUNT_SETTINGS_VIEW,"Account Settings", new AccountSettings());
+        createView(ui, uiSettings, Ui.DEBUG_VIEW, "Debug View", new DebugPane());
+        createView(ui, uiSettings, Ui.PICK_GUESSES_VIEW, "Pick Guesses", new PickGuesses());
         createView(ui, uiSettings, Ui.GRID_CONFIG_VIEW,"Grid Settings", new GridConfig());
         createView(ui, uiSettings, Ui.NAME_CONFIG_VIEW, "Name Settings", new RowConfig.PlayerRowConfig());
         createView(ui, uiSettings, Ui.PICK_CONFIG_VIEW, "Picked Settings", new RowConfig.PickRowConfig());
@@ -72,6 +74,15 @@ public class UiBuilder {
             }
         };
         ui.views.get(Ui.GRID_CONFIG_VIEW).frame.addComponentListener(closePreview);
+        ui.views.get(Ui.NAME_CONFIG_VIEW).frame.addComponentListener(closePreview);
+        ui.views.get(Ui.PICK_CONFIG_VIEW).frame.addComponentListener(closePreview);
+        ui.views.get(Ui.PICK_GUESSES_VIEW).frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent componentEvent) {
+                PickGuesses guesses = (PickGuesses) ui.views.get(Ui.PICK_GUESSES_VIEW).getPanel();
+                guesses.resizeComponents();
+            }
+        });
 
         ui.imageSelector = ImageSelector.createImageSelector();
 

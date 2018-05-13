@@ -3,7 +3,6 @@ package org.hallock.dota.model;
 import org.hallock.dota.control.Registry;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sun.security.x509.AVA;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,15 +17,19 @@ import java.util.regex.Pattern;
 
 public class Hero {
     String id;
-    String display;
+    public String display;
     int pickId;
     LinkedList<ImageInformation> imageCache;
 
     public Hero(JSONObject heroConfig) throws JSONException {
-        this.id = heroConfig.getString("id");
-        this.pickId = heroConfig.getInt("pickId");
-        this.display = heroConfig.getString("display");
+        this.id = heroConfig.getString("name");
+        this.pickId = heroConfig.getInt("id");
+        this.display = heroConfig.getString("localized_name");
         imageCache = new LinkedList<>();
+    }
+
+    public String toString() {
+        return display;
     }
 
     private Path getImageDirectory() {
@@ -125,23 +128,26 @@ public class Hero {
 
 
     private static final String BANNED_FILENAME = "banned";
-    private static final String PICKED_FILENAME = "picked";
+    private static final String RADIANT_PICKED_FILENAME = "radiant_picked";
+    private static final String DIRE_PICKED_FILENAME = "dire_picked";
     private static final String AVAILABLE_FILENAME = "available";
     private static final String UNALIABLE_FILENAME = "unavailable";
     private static final String[] IMAGE_TYPES = new String[]{
             BANNED_FILENAME,
-            PICKED_FILENAME,
+            RADIANT_PICKED_FILENAME,
+            DIRE_PICKED_FILENAME,
             AVAILABLE_FILENAME,
             UNALIABLE_FILENAME
     };
 
 
-    private static final Pattern FILENAME_PARSER = Pattern.compile("(" + String.join("|", IMAGE_TYPES) + ")_([0-9])\\.png");
+    private static final Pattern FILENAME_PARSER = Pattern.compile("(" + String.join("|", IMAGE_TYPES) + ")_([0-9]*)\\.png");
     private static HeroState getHeroState(Matcher matcher) {
         switch (matcher.group(1)) {
             case BANNED_FILENAME: return HeroState.Banned;
             case UNALIABLE_FILENAME: return HeroState.Unavailable;
-            case PICKED_FILENAME: return HeroState.Picked;
+            case RADIANT_PICKED_FILENAME: return HeroState.PickedRadiant;
+            case DIRE_PICKED_FILENAME: return HeroState.PickedDire;
             case AVAILABLE_FILENAME: return HeroState.Available;
             default:
                 throw new IllegalStateException("Unrecognized file name: " + matcher.group(1));
@@ -153,13 +159,14 @@ public class Hero {
                 return BANNED_FILENAME;
             case Available:
                 return AVAILABLE_FILENAME;
-            case Picked:
             case PickedRadiant:
+                return RADIANT_PICKED_FILENAME;
             case PickedDire:
-                return PICKED_FILENAME;
+                return DIRE_PICKED_FILENAME;
             case Unavailable:
                 return UNALIABLE_FILENAME;
             case Unidentified:
+            case Picked:
             default:
                 throw new IllegalStateException("Unexpected image type: " + state);
         }

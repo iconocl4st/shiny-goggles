@@ -5,17 +5,78 @@
  */
 package org.hallock.dota.view;
 
+import org.hallock.dota.control.Registry;
+import org.hallock.dota.model.Hero;
+import org.hallock.dota.model.HeroState;
+import org.hallock.dota.model.UnIdentifiedImage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  *
  * @author thallock
  */
 public class PickGuess extends javax.swing.JPanel {
-
+    private UnIdentifiedImage image;
+    private PickGuesses pickGuesses;
+    private DefaultComboBoxModel<Hero> comboBoxModel;
+    private DefaultComboBoxModel<HeroState> heroStateModel;
+    private static final Comparator<? super Hero> HERO_SORTER = new Comparator<Hero>() {
+        @Override
+        public int compare(Hero hero, Hero t1) {
+            return hero.toString().compareTo(t1.toString());
+        }
+    };
     /**
      * Creates new form PickGuess
      */
-    public PickGuess() {
+    public PickGuess(UnIdentifiedImage image, PickGuesses guesses) {
+        this.image = image;
+        this.pickGuesses = guesses;
         initComponents();
+    }
+
+    DefaultComboBoxModel<Hero> getHeroComboBoxModel() {
+        if (comboBoxModel == null) {
+            Hero[] heroes = Registry.getInstance().heroes.getAll();
+            Arrays.sort(heroes, HERO_SORTER);
+            comboBoxModel = new DefaultComboBoxModel<>(heroes);
+            comboBoxModel.setSelectedItem(image.hero);
+        }
+        return comboBoxModel;
+    }
+    DefaultComboBoxModel<HeroState> getHeroStateModel() {
+        if (heroStateModel == null) {
+            heroStateModel = new DefaultComboBoxModel<>(new HeroState[]{
+                    HeroState.Available,
+                    HeroState.Unavailable,
+                    HeroState.Banned,
+                    HeroState.PickedDire,
+                    HeroState.PickedRadiant
+            });
+            heroStateModel.setSelectedItem(image.guessedState);
+        }
+        return heroStateModel;
+    }
+
+
+    JPanel createImagePanel() {
+        return new JPanel() {
+            public void paint(Graphics g) {
+                g.setColor(Color.black);
+                g.fillRect(0, 0, getWidth(), getHeight());
+                if (image == null) {
+                    return;
+                }
+                int width = (int)(image.image.getWidth() * (getHeight() / (double) image.image.getHeight()));
+
+                g.drawImage(image.image, 0, 0, width, getHeight(), this);
+            }
+        };
     }
 
     /**
@@ -27,7 +88,7 @@ public class PickGuess extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = createImagePanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -36,7 +97,6 @@ public class PickGuess extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         heroBox = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
-        overwriteButton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(1, 1, 1));
 
@@ -51,11 +111,16 @@ public class PickGuess extends javax.swing.JPanel {
             .addGap(0, 295, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(300);
 
         jLabel2.setText("State:");
 
-        stateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        stateBox.setModel(getHeroStateModel());
+        stateBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stateBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -82,7 +147,12 @@ public class PickGuess extends javax.swing.JPanel {
 
         jLabel1.setText("Hero:");
 
-        heroBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        heroBox.setModel(getHeroComboBoxModel());
+        heroBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                heroBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -92,7 +162,7 @@ public class PickGuess extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(heroBox, 0, 120, Short.MAX_VALUE)
+                .addComponent(heroBox, 0, 220, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -114,13 +184,6 @@ public class PickGuess extends javax.swing.JPanel {
             }
         });
 
-        overwriteButton.setText("Overwrite");
-        overwriteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                overwriteButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,9 +194,7 @@ public class PickGuess extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSplitPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(overwriteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -145,32 +206,38 @@ public class PickGuess extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addButton)
-                        .addComponent(overwriteButton)))
+                    .addComponent(addButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            image.persist();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        pickGuesses.removeGuess(this);
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void overwriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overwriteButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_overwriteButtonActionPerformed
+    private void stateBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateBoxActionPerformed
+        image.guessedState = (HeroState) getHeroStateModel().getSelectedItem();
+    }//GEN-LAST:event_stateBoxActionPerformed
+
+    private void heroBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heroBoxActionPerformed
+        image.hero = (Hero) getHeroComboBoxModel().getSelectedItem();
+    }//GEN-LAST:event_heroBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JComboBox<String> heroBox;
+    private javax.swing.JComboBox<Hero> heroBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton overwriteButton;
-    private javax.swing.JComboBox<String> stateBox;
+    private javax.swing.JComboBox<HeroState> stateBox;
     // End of variables declaration//GEN-END:variables
 }

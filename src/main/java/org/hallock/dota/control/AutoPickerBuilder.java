@@ -4,7 +4,6 @@ import org.hallock.dota.model.*;
 import org.hallock.dota.model.geometry.GridEnumerator;
 import org.hallock.dota.model.geometry.HeroGridGeometry;
 import org.hallock.dota.model.geometry.ImageRowGeometry;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,9 +43,10 @@ public class AutoPickerBuilder {
                         HeroState.Unavailable,
                         hero.getImagesByType(HeroState.Unavailable)
                 ));
-                identifiers.addLast(new HeroIdentifier(
+                identifiers.addLast(new HeroGridIdentifier(
                         location,
-                        list.toArray(new HeroIdentification[0])
+                        list.toArray(new HeroIdentification[0]),
+                        hero
                 ));
             }
         });
@@ -54,7 +54,7 @@ public class AutoPickerBuilder {
 
 
     private static void addHeroPickIdentifiers(
-            LinkedList<StateIdentifier> identifiers,
+            final LinkedList<StateIdentifier> identifiers,
             ImageRowGeometry grid
     ) throws JSONException {
         final Heroes heroes = Registry.getInstance().heroes;
@@ -69,10 +69,10 @@ public class AutoPickerBuilder {
                             identifications.add(new HeroIdentification(
                                     hero,
                                     picked,
-                                    hero.getImagesByType(HeroState.Picked)
+                                    hero.getImagesByType(picked)
                             ));
                         }
-                        identifiers.add(new HeroIdentifier(location, identifications.toArray(new HeroIdentification[0])));
+                        identifiers.add(new PickIdentifier(location, identifications.toArray(new HeroIdentification[0]), team));
                     }
                 }
         );

@@ -7,7 +7,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.*;
-import java.io.IOException;
 
 public class GridEnumerator {
 

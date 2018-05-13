@@ -6,12 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 public class Identifications {
     private HashMap<Integer, HeroState> previous = new HashMap<>();
+    private LinkedList<UnIdentifiedImage> unidentifiedImages = new LinkedList<>();
     private Team userTeam = null;
 
     private Identifications() {}
@@ -21,10 +23,12 @@ public class Identifications {
     }
 
     public void heroIdentified(Hero hero, HeroState state) {
+        Registry.getInstance().logger.log(hero + " identified as " + state);
+
         int id = hero.pickId;
         HeroState previousState = previous.get(id);
         if (state.equals(HeroState.Unidentified)) {
-            throw new IllegalArgumentException("This happens");
+//            throw new IllegalArgumentException("This happens");
         }
         if (previousState == null) {
             setState(hero, state);
@@ -154,7 +158,6 @@ public class Identifications {
                     results.radiantPicked.add(entry.getKey());
                     break;
                 case Unavailable:
-                    System.out.println("So this happens");
                     results.unavailable.add(entry.getKey());
                     break;
                 case Picked:
@@ -178,6 +181,14 @@ public class Identifications {
         return results;
     }
 
+    public void couldNotIdentify(BufferedImage observed, Hero hero, HeroState state) {
+        unidentifiedImages.add(new UnIdentifiedImage(observed, hero, state));
+    }
+
+    public LinkedList<UnIdentifiedImage> getUnidentified() {
+        return (LinkedList<UnIdentifiedImage>) unidentifiedImages.clone();
+    }
+
     public static class IdentificationResults {
         public LinkedList<Integer> direPicked = new LinkedList<>();
         public LinkedList<Integer> radiantPicked = new LinkedList<>();
@@ -193,8 +204,7 @@ public class Identifications {
 
         public JSONObject toJson() throws JSONException {
             if (playerIsRadiant == null) {
-//                throw new IllegalStateException("Player team not given!");
-                playerIsRadiant = true;
+                throw new IllegalStateException("Player team not given!");
             }
 
             LinkedList<Integer> radiantBan = new LinkedList<>();

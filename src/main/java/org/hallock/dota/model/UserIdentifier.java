@@ -4,7 +4,6 @@ import org.hallock.dota.util.Cameras;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashSet;
 
 public class UserIdentifier implements StateIdentifier {
     private final Team team;
@@ -32,6 +31,13 @@ public class UserIdentifier implements StateIdentifier {
             }
         }
 
-        System.out.println(idx + "," + team + "," + location + "," + count);
+        if (count < 10) {
+            return;
+        }
+        if (count > 100) {
+            pickedState.userIdentified(team);
+            return;
+        }
+        throw new IllegalStateException("Unrecognized number of white pixels: " + count);
     }
 }

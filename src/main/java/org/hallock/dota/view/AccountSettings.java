@@ -5,10 +5,11 @@
  */
 package org.hallock.dota.view;
 
-import java.io.IOException;
 import org.hallock.dota.control.Registry;
 import org.hallock.dota.view.Ui.View;
 import org.json.JSONException;
+
+import java.io.IOException;
 
 /**
  *

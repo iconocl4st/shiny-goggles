@@ -5,12 +5,19 @@
  */
 package org.hallock.dota.view;
 
+import org.hallock.dota.control.Registry;
+import org.hallock.dota.model.UnIdentifiedImage;
+
+import java.awt.*;
+import java.util.LinkedList;
+
 /**
  *
  * @author thallock
  */
-public class PickGuesses extends javax.swing.JPanel {
+public class PickGuesses extends javax.swing.JPanel implements Ui.View {
 
+    private LinkedList<PickGuess> pickGuesses = new LinkedList<>();
     /**
      * Creates new form PickGuesses
      */
@@ -27,19 +34,77 @@ public class PickGuesses extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 674, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 411, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 676, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 413, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+
+    private static final int RESIZE_HEIGHT = 200;
+    void resizeComponents() {
+        int HEIGHT  = 200;
+        int currentY = 0;
+        for (PickGuess pickGuess : pickGuesses) {
+            pickGuess.setLocation(0, currentY);
+            pickGuess.setSize(jPanel1.getWidth(), HEIGHT);
+            pickGuess.setPreferredSize(new Dimension(jPanel1.getWidth(), HEIGHT));
+            currentY += HEIGHT;
+        }
+        jPanel1.setPreferredSize(new Dimension(jPanel1.getWidth(), (pickGuesses.size() + 1) * HEIGHT));
+    }
+
+    void removeGuess(PickGuess guess) {
+        jPanel1.remove(guess);
+        pickGuesses.remove(guess);
+        refresh();
+        if (pickGuesses.isEmpty()) {
+            Registry.getInstance().ui.hide(Ui.PICK_GUESSES_VIEW);
+        }
+    }
+
+    public void setGuesses(LinkedList<UnIdentifiedImage> heroes) {
+        jPanel1.removeAll();
+        pickGuesses.clear();
+        for (UnIdentifiedImage image : heroes) {
+            PickGuess pickGuess = new PickGuess(image, this);
+            pickGuesses.add(pickGuess);
+            jPanel1.add(pickGuess);
+        }
+        refresh();
+    }
+
+
+    @Override
+    public void refresh() {
+        resizeComponents();
+    }
 }

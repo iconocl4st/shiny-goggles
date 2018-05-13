@@ -43,7 +43,7 @@ public final class Cameras {
 
     public static Camera buildCamera() throws AWTException, IOException {
         if (true) {
-            BufferedImage image = ImageIO.read(new File("output.png"));
+            BufferedImage image = ImageIO.read(new File("/work/dota/AutoPicker/output/whole_thing_0007.png"));
             return new ImageCamera(image);
         } else {
             Robot robot = new Robot();
