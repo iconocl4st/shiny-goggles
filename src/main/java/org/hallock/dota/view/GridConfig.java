@@ -5,11 +5,16 @@
  */
 package org.hallock.dota.view;
 
+import org.hallock.dota.control.Registry;
+import org.hallock.dota.model.geometry.HeroGridGeometry;
+import org.hallock.dota.view.Ui.View;
+import org.json.JSONException;
+
 /**
  *
  * @author thallock
  */
-public class GridConfig extends javax.swing.JPanel {
+public class GridConfig extends javax.swing.JPanel implements View {
 
     /**
      * Creates new form GridConfig
@@ -55,14 +60,39 @@ public class GridConfig extends javax.swing.JPanel {
         jLabel5.setText("Vertical gap between types:");
 
         hGapSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        hGapSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                hGapSpinnerStateChanged(evt);
+            }
+        });
 
         vGapSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        vGapSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                vGapSpinnerStateChanged(evt);
+            }
+        });
 
         vTypeGapSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        vTypeGapSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                vTypeGapSpinnerStateChanged(evt);
+            }
+        });
 
         heightSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        heightSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                heightSpinnerStateChanged(evt);
+            }
+        });
 
         widthSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        widthSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                widthSpinnerStateChanged(evt);
+            }
+        });
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,8 +113,18 @@ public class GridConfig extends javax.swing.JPanel {
         jLabel7.setText("Start y:");
 
         startXSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        startXSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                startXSpinnerStateChanged(evt);
+            }
+        });
 
         startYSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        startYSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                startYSpinnerStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,8 +202,37 @@ public class GridConfig extends javax.swing.JPanel {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.hide(Ui.GRID_CONFIG_VIEW);
+        Registry.getInstance().ui.hide(Ui.GRID_PREVIEW);
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void widthSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_widthSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_widthSpinnerStateChanged
+
+    private void heightSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_heightSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_heightSpinnerStateChanged
+
+    private void hGapSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hGapSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_hGapSpinnerStateChanged
+
+    private void vGapSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_vGapSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_vGapSpinnerStateChanged
+
+    private void vTypeGapSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_vTypeGapSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_vTypeGapSpinnerStateChanged
+
+    private void startXSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startXSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_startXSpinnerStateChanged
+
+    private void startYSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startYSpinnerStateChanged
+        refreshPreview();
+    }//GEN-LAST:event_startYSpinnerStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,4 +253,39 @@ public class GridConfig extends javax.swing.JPanel {
     private javax.swing.JSpinner vTypeGapSpinner;
     private javax.swing.JSpinner widthSpinner;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void refresh() {
+        HeroGridGeometry gridGeometry = Registry.getInstance().gridGeometry;
+        startXSpinner.setValue(gridGeometry.heroStartX);
+        startYSpinner.setValue(gridGeometry.heroStartY);
+        vGapSpinner.setValue(gridGeometry.heroVerticalGap);
+        vTypeGapSpinner.setValue(gridGeometry.heroTypeGap);
+        widthSpinner.setValue(gridGeometry.heroWidth);
+        hGapSpinner.setValue(gridGeometry.heroHorizontalGap);
+        heightSpinner.setValue(gridGeometry.heroHeight);
+        refreshPreview();
+    }
+    
+    public void refreshPreview() {
+        // Registry.getInstance().ui.show(Ui.GRID_PREVIEW);
+        GridPreviewer preview = (GridPreviewer) Registry.getInstance().ui.getView(Ui.GRID_PREVIEW).panel;
+        try {
+            preview.drawGrid(getGeometry());
+        } catch (JSONException e) {
+            Registry.getInstance().logger.log("Unable to show geometry", e);
+        }
+    }
+    
+    public HeroGridGeometry getGeometry() {
+        HeroGridGeometry gridGeometry = new HeroGridGeometry();
+        gridGeometry.heroStartX = (Integer) startXSpinner.getValue();
+        gridGeometry.heroStartY = (Integer) startYSpinner.getValue();
+        gridGeometry.heroTypeGap = (Integer) vTypeGapSpinner.getValue();
+        gridGeometry.heroVerticalGap = (Integer) vGapSpinner.getValue();
+        gridGeometry.heroWidth = (Integer) widthSpinner.getValue();
+        gridGeometry.heroHorizontalGap = (Integer) hGapSpinner.getValue();
+        gridGeometry.heroHeight = (Integer) heightSpinner.getValue();
+        return gridGeometry;
+    }
 }

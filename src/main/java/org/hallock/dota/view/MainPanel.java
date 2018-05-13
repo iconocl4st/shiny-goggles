@@ -5,6 +5,8 @@
  */
 package org.hallock.dota.view;
 
+import org.hallock.dota.control.Registry;
+
 /**
  *
  * @author thallock
@@ -16,6 +18,10 @@ public class MainPanel extends javax.swing.JPanel {
      */
     public MainPanel() {
         initComponents();
+    }
+    
+    void setLog(String string) {
+        logLabel.setText(string);
     }
 
     /**
@@ -87,11 +93,11 @@ public class MainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void configureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configureButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.show(Ui.CONFIGURAION_VIEW);
     }//GEN-LAST:event_configureButtonActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.show(Ui.ACCOUNT_SETTINGS_VIEW);
     }//GEN-LAST:event_accountButtonActionPerformed
 
 

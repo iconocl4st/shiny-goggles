@@ -1,6 +1,9 @@
 package org.hallock.dota.model;
 
 import org.hallock.dota.control.Registry;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -176,6 +179,41 @@ public class Identifications {
         public LinkedList<Integer> banned = new LinkedList<>();
         public LinkedList<Integer> unavailable = new LinkedList<>();
         public Boolean playerIsRadiant = null;
+
+        static JSONArray jsonArray(LinkedList<Integer> list) {
+            JSONArray array = new JSONArray();
+            for (Integer i : list) array.put(i);
+            return array;
+        }
+
+        public JSONObject toJson() throws JSONException {
+            if (playerIsRadiant == null) {
+                throw new IllegalStateException("Player team not given!");
+            }
+
+            LinkedList<Integer> radiantBan = new LinkedList<>();
+            LinkedList<Integer> direBan = new LinkedList<>();
+            for (Integer i : banned) {
+                if (radiantBan.size() >= 5) {
+                    direBan.add(i);
+                } else {
+                    radiantBan.add(i);
+                }
+            }
+
+
+            JSONObject returnValue = new JSONObject();
+            returnValue.put("ping", true);
+            returnValue.put("isRadiant", (boolean) playerIsRadiant);
+            returnValue.put("radiantPick", jsonArray(radiantPicked));
+            returnValue.put("direPick", jsonArray(direPicked));
+            returnValue.put("radiantBan", jsonArray(radiantBan));
+            returnValue.put("direBan", jsonArray(direBan));
+            returnValue.put("unavailableHeroes", jsonArray(unavailable));
+            returnValue.put("app", Registry.getInstance().config.appName);
+
+            return returnValue;
+        }
     }
 
     public static Identifications createEmptyResults() {

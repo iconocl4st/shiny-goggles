@@ -1,14 +1,10 @@
 {
-    "hero-config-file": "/work/dota/config/heros.json",
-    "layout-file": "/work/dota/config/layout.json",
-    "image-directory": "/work/dota/config/images",
-    "username": "",
-    "credential": "",
-    "dota-picker-url": "raboof",
-    "application-location": {
-        "x": 0,
-        "y": 0,
-        "w": 1920,
-        "h": 1080
-    }
+  "credential": "",
+  "username": "",
+  "dota-picker-url": "http://dotapicker.com/api/autopicker/update",
+  "heroes-file": "/work/dota/AutoPicker/config/heroes.json",
+  "image-directory": "/work/dota/AutoPicker/config/images",
+  "layout-file": "/work/dota/AutoPicker/config/layout.json",
+  "ui-settings-file": "/work/dota/AutoPicker/config/ui.json",
+  "application-name": "hallocks-autopicker"
 }

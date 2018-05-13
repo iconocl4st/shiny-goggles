@@ -1,9 +1,11 @@
 package org.hallock.dota.control;
 
 import org.hallock.dota.model.*;
+import org.hallock.dota.model.geometry.GridEnumerator;
 import org.hallock.dota.model.geometry.HeroGridGeometry;
 import org.hallock.dota.model.geometry.ImageRowGeometry;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
@@ -18,126 +20,128 @@ import java.util.LinkedList;
 public class AutoPickerBuilder {
 
     private static void addHeroGridIdentifiers(
-            LinkedList<StateIdentifier> identifiers,
+            final LinkedList<StateIdentifier> identifiers,
             HeroGridGeometry grid,
             JSONObject gridConfig
-    ) {
-        int currentX = grid.heroStartX;
-        int currentY = grid.heroStartY;
-        JSONArray heroTypes = gridConfig.getJSONArray("types");
-        for (int type=0; type<heroTypes.length(); type++) {
-            JSONArray rows = heroTypes.getJSONArray(type);
-            for (int r = 0; r < rows.length(); r++) {
-                JSONArray heros = rows.getJSONArray(r);
-                for (int h = 0; h < heros.length(); h++) {
-                    JSONObject spec = heros.getJSONObject(h);
-                    Hero hero = Registry.getInstance().heroes.getHero(spec.getString("hero"));
-                    Rectangle location = new Rectangle(currentX, currentY, grid.heroWidth, grid.heroHeight);
-                    identifiers.addLast(new HeroIdentifier(
-                            location,
-                            hero,
-                            new HeroIdentification[]{
-                                    new HeroIdentification(
-                                            HeroState.Banned,
-                                            new BufferedImage[]{getImage(spec.getString("banned-image"))}
-                                    ),
-                                    new HeroIdentification(
-                                            HeroState.Available,
-                                            new BufferedImage[]{getImage(spec.getString("available-image"))}
-                                    ),
-                                    new HeroIdentification(
-                                            HeroState.Picked,
-                                            new BufferedImage[]{getImage(spec.getString("unavailable-image"))}
-                                    )
-                            }
+    ) throws JSONException {
+        GridEnumerator.enumerateGrid(grid, gridConfig, new GridEnumerator.GridItemVisitor() {
+            @Override
+            public void visit(JSONObject config, Rectangle location) throws JSONException {
+                Hero hero = Registry.getInstance().heroes.getHero(config.getString("hero"));
+
+                LinkedList<HeroIdentification> list = new LinkedList<>();
+                if (config.has("banned-images")) {
+                    list.add(new HeroIdentification(
+                            HeroState.Banned,
+                            new BufferedImage[]{getImage(config.getString("banned-image"))}
                     ));
-
-                    currentX += grid.heroWidth + grid.heroHorizontalGap;
                 }
-
-                currentX = grid.heroStartX;
-                currentY += grid.heroHeight + grid.heroVerticalGap;
+                if (config.has("available-images")) {
+                    list.add(new HeroIdentification(
+                            HeroState.Available,
+                            new BufferedImage[]{getImage(config.getString("available-image"))}
+                    ));
+                }
+                if (config.has("unavailable-images")) {
+                    list.add(new HeroIdentification(
+                            HeroState.Picked,
+                            new BufferedImage[]{getImage(config.getString("unavailable-image"))}
+                    ));
+                }
+                identifiers.addLast(new HeroIdentifier(
+                        location,
+                        hero,
+                        list.toArray(new HeroIdentification[0])
+                ));
             }
-            currentY += grid.heroTypeGap - grid.heroVerticalGap;
-        }
+        });
     }
 
 
     private static void addHeroPickIdentifiers(
             LinkedList<StateIdentifier> identifiers,
-            ImageRowGeometry grid,
-            JSONObject pickConfig
-    ) {
-        JSONArray radiantArray = pickConfig.getJSONArray("radiant");
-        for (int i=0;i<radiantArray.length(); i++) {
-            JSONObject heroObj = radiantArray.getJSONObject(i);
-            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
-            Rectangle location = new Rectangle();
-            identifiers.add(new HeroIdentifier(
-                    location,
-                    hero,
-                    new HeroIdentification[]{
-                            new HeroIdentification(
-                                    HeroState.PickedRadiant,
-                                    new BufferedImage[]{getImage(heroObj.getString("picked-image"))}
-                        )
-                    }
-            ));
-        }
-        JSONArray direArray = pickConfig.getJSONArray("dire");
-        for (int i=0;i<direArray.length(); i++) {
-            JSONObject heroObj = radiantArray.getJSONObject(i);
-            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
-            Rectangle location = new Rectangle();
-            identifiers.add(new HeroIdentifier(
-                    location,
-                    hero,
-                    new HeroIdentification[] {
-                            new HeroIdentification(
-                                    HeroState.PickedDire,
-                                    new BufferedImage[]{getImage(heroObj.getString("picked-image"))}
-                            )
-                    }
-            ));
-        }
+            ImageRowGeometry grid
+    ) throws JSONException {
+//        JSONArray radiantArray = pickConfig.getJSONArray("radiant");
+//        for (int i=0;i<radiantArray.length(); i++) {
+//            JSONObject heroObj = radiantArray.getJSONObject(i);
+//            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
+//            Rectangle location = new Rectangle();
+//            identifiers.add(new HeroIdentifier(
+//                    location,
+//                    hero,
+//                    new HeroIdentification[]{
+//                            new HeroIdentification(
+//                                    HeroState.PickedRadiant,
+//                                    new BufferedImage[]{getImage(heroObj.getString("picked-image"))}
+//                        )
+//                    }
+//            ));
+//        }
+//        JSONArray direArray = pickConfig.getJSONArray("dire");
+//        for (int i=0;i<direArray.length(); i++) {
+//            JSONObject heroObj = radiantArray.getJSONObject(i);
+//            Hero hero = Registry.getInstance().heroes.getHero(heroObj.getString("hero"));
+//            Rectangle location = new Rectangle();
+//            identifiers.add(new HeroIdentifier(
+//                    location,
+//                    hero,
+//                    new HeroIdentification[] {
+//                            new HeroIdentification(
+//                                    HeroState.PickedDire,
+//                                    new BufferedImage[]{getImage(heroObj.getString("picked-image"))}
+//                            )
+//                    }
+//            ));
+//        }
     }
 
 
     private static void addPlayerIdentifier(
             LinkedList<StateIdentifier> identifiers,
-            ImageRowGeometry grid,
-            JSONObject playerConfig
+            ImageRowGeometry grid
     ) {
 
     }
 
-    public static AutoPicker buildAutoPicker(JSONObject layout) throws IOException {
-        HeroGridGeometry grid = new HeroGridGeometry();
-        ImageRowGeometry pickedHeros = new ImageRowGeometry();
-        ImageRowGeometry playerNames = new ImageRowGeometry();
+    public static LinkedList<StateIdentifier> builIdentifiers() throws JSONException {
         LinkedList<StateIdentifier> identifiers = new LinkedList<>();
 
-        JSONObject gridObj = layout.getJSONObject("grid");
         addHeroGridIdentifiers(
                 identifiers,
-                HeroGridGeometry.parseHeroGridGeometry(gridObj.getJSONObject("geometry")),
-                gridObj.getJSONObject("config")
+                Registry.getInstance().gridGeometry,
+                Registry.getInstance().gridConfig
         );
 
-        JSONObject picks = layout.getJSONObject("picks");
         addHeroPickIdentifiers(
                 identifiers,
-                ImageRowGeometry.parseGeometry(picks.getJSONObject("geometry")),
-                picks.getJSONObject("config")
+                Registry.getInstance().pickedGeometry
         );
 
-        JSONObject players = layout.getJSONObject("players");
         addPlayerIdentifier(
                 identifiers,
-                ImageRowGeometry.parseGeometry(players.getJSONObject("geometry")),
-                players.getJSONObject("config")
+                Registry.getInstance().nameGeometry
         );
-        return new AutoPicker(identifiers);
+
+        return identifiers;
+    }
+
+    public static AutoPicker buildAutoPicker(JSONObject layout)  throws JSONException {
+        Registry.getInstance().gridConfig = layout.getJSONObject("grid").getJSONObject("config");
+
+        Registry.getInstance().gridGeometry = HeroGridGeometry.parseHeroGridGeometry(
+                layout.getJSONObject("grid").getJSONObject("geometry")
+        );
+        Registry.getInstance().pickedGeometry = ImageRowGeometry.parseGeometry(
+                layout.getJSONObject("picks").getJSONObject("geometry")
+        );
+        Registry.getInstance().nameGeometry = ImageRowGeometry.parseGeometry(
+                layout.getJSONObject("players").getJSONObject("geometry")
+        );
+
+        AutoPicker picker = new AutoPicker();
+        picker.setIdentifiers(builIdentifiers());
+        return picker;
     }
 
     // Should use the image directory from within the config.

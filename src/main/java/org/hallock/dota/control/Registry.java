@@ -2,9 +2,15 @@ package org.hallock.dota.control;
 
 import org.hallock.dota.model.AutoPicker;
 import org.hallock.dota.model.Heroes;
+import org.hallock.dota.model.geometry.HeroGridGeometry;
+import org.hallock.dota.model.geometry.ImageRowGeometry;
 import org.hallock.dota.util.Camera;
 import org.hallock.dota.util.Logger;
+import org.hallock.dota.util.NetworkManager;
 import org.hallock.dota.view.Ui;
+import org.json.JSONObject;
+
+import javax.swing.*;
 
 public class Registry {
     public Ui ui;
@@ -14,6 +20,13 @@ public class Registry {
     public Heroes heroes;
     public AutoPicker picker;
     public Runner runner;
+
+
+    public HeroGridGeometry gridGeometry;
+    public ImageRowGeometry pickedGeometry;
+    public ImageRowGeometry nameGeometry;
+    public JSONObject gridConfig;
+    public NetworkManager networkManager;
 
 
     public boolean stop() {

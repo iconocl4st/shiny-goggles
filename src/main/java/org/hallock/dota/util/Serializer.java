@@ -1,16 +1,17 @@
 package org.hallock.dota.util;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.json.JSONWriter;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Serializer {
-    public static Rectangle parseRectangle(JSONObject obj) {
+    public static Rectangle parseRectangle(JSONObject obj) throws JSONException {
         return new Rectangle(
                 obj.getInt("x"),
                 obj.getInt("y"),
@@ -19,9 +20,15 @@ public class Serializer {
         );
     }
 
-    public static JSONObject readFile(Path path) throws IOException {
-        try (InputStream reader = Files.newInputStream(path);) {
+    public static JSONObject readFile(Path path) throws IOException, JSONException {
+        try (Reader reader = new FileReader(path.toFile())) {
             return new JSONObject(new JSONTokener(reader));
+        }
+    }
+
+    public static void writeFile(JSONObject object, Path path) throws IOException, JSONException {
+        try (FileWriter writer = new FileWriter(path.toFile())) {
+            writer.write(object.toString(2));
         }
     }
 }

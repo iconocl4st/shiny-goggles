@@ -10,12 +10,11 @@ public class AutoPicker {
     // first player [x=168,y=10,width=130,height=77]
     // first hero [x=172,y=188,width=62,height=89]
 
-    private final LinkedList<StateIdentifier> identifiers;
-    
-    public AutoPicker(LinkedList<StateIdentifier> identifiers) {
+    private LinkedList<StateIdentifier> identifiers;
+
+    public void setIdentifiers(LinkedList<StateIdentifier> identifiers) {
         this.identifiers = identifiers;
     }
-
 
     public Identifications identifyPicks() {
         Identifications results = Identifications.createEmptyResults();

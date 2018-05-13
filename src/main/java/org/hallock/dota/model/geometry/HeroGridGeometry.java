@@ -1,5 +1,6 @@
 package org.hallock.dota.model.geometry;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class HeroGridGeometry {
@@ -13,15 +14,15 @@ public class HeroGridGeometry {
 
 
     public int heroHorizontalGap = 7;
-    public int heroVerticalGap = 10;
+    public int heroVerticalGap = 6;
     public int heroWidth = 45;
-    public int heroHeight = 70;
-    public int heroTypeGap = 34;
+    public int heroHeight = 73;
+    public int heroTypeGap = 32;
 
     public int heroStartX = 172;
     public int heroStartY = 188;
 
-    HeroGridGeometry(JSONObject obj) {
+    HeroGridGeometry(JSONObject obj) throws JSONException {
         heroHorizontalGap = obj.getInt(DX);
         heroVerticalGap = obj.getInt(DY);
         heroWidth = obj.getInt(HERO_WIDTH);

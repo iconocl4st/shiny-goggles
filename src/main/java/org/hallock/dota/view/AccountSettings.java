@@ -5,17 +5,27 @@
  */
 package org.hallock.dota.view;
 
+import java.io.IOException;
+import org.hallock.dota.control.Registry;
+import org.hallock.dota.view.Ui.View;
+import org.json.JSONException;
+
 /**
  *
  * @author thallock
  */
-public class AccountSettings extends javax.swing.JPanel {
+public class AccountSettings extends javax.swing.JPanel implements View {
 
     /**
      * Creates new form AccountSettings
      */
     public AccountSettings() {
         initComponents();
+    }
+    
+    public void refresh() {
+        nameField.setText(Registry.getInstance().config.userId);
+        tokenField.setText(Registry.getInstance().config.userCred);
     }
 
     /**
@@ -110,11 +120,18 @@ public class AccountSettings extends javax.swing.JPanel {
     }//GEN-LAST:event_tokenFieldActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.hide(Ui.ACCOUNT_SETTINGS_VIEW);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().config.userId = nameField.getText();
+        Registry.getInstance().config.userCred = tokenField.getText();
+        try {
+            Registry.getInstance().config.save();
+            Registry.getInstance().ui.hide(Ui.ACCOUNT_SETTINGS_VIEW);
+        } catch (IOException | JSONException e) {
+            Registry.getInstance().logger.log("Unable to save the config", e);
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
 

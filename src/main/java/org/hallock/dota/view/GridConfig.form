@@ -131,6 +131,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="hGapSpinnerStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="vGapSpinner">
       <Properties>
@@ -138,6 +141,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="vGapSpinnerStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="vTypeGapSpinner">
       <Properties>
@@ -145,6 +151,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="vTypeGapSpinnerStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="heightSpinner">
       <Properties>
@@ -152,6 +161,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="heightSpinnerStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="widthSpinner">
       <Properties>
@@ -159,6 +171,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="widthSpinnerStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
@@ -192,6 +207,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="startXSpinnerStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="startYSpinner">
       <Properties>
@@ -199,6 +217,9 @@
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="startYSpinnerStateChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

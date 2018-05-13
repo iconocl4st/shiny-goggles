@@ -1,0 +1,383 @@
+{
+  "players": {
+    "geometry": {
+
+    }
+  },
+  "picks": {
+    "geometry": {
+
+    }
+  },
+  "grid": {
+    "geometry": {
+    },
+    "config": {
+      "types": [
+        [
+          [
+            {
+              "hero": "abaddon"
+            },
+            {
+              "hero": "alchemist"
+            },
+            {
+              "hero": "axe"
+            },
+            {
+              "hero": "beast-master"
+            },
+            {
+              "hero": "brew-master"
+            },
+            {
+              "hero": "bristle-back"
+            },
+            {
+              "hero": "centuor-war-runner"
+            },
+            {
+              "hero": "chaos-knight"
+            },
+            {
+              "hero": "clockwork"
+            },
+            {
+              "hero": "doom"
+            },
+            {
+              "hero": "dragon-knight"
+            },
+            {
+              "hero": "earth-spirit"
+            },
+            {
+              "hero": "earth-shaker"
+            },
+            {
+              "hero": "elder-titan"
+            },
+            {
+              "hero": "huskar"
+            },
+            {
+              "hero": "io"
+            },
+            {
+              "hero": "kunkka"
+            },
+            {
+              "hero": "legion-commander"
+            },
+            {
+              "hero": "life-stealer"
+            },
+            {
+              "hero": "lycan"
+            },
+            {
+              "hero": "magnus"
+            }
+          ],
+          [
+            {
+              "hero": "night-stalker"
+            },
+            {
+              "hero": "templar-knight"
+            },
+            {
+              "hero": "pheonix"
+            },
+            {
+              "hero": "pudge"
+            },
+            {
+              "hero": "sand-king"
+            },
+            {
+              "hero": "slardar"
+            },
+            {
+              "hero": "spirit-breaker"
+            },
+            {
+              "hero": "sven"
+            },
+            {
+              "hero": "tide-hunter"
+            },
+            {
+              "hero": "timber-saw"
+            },
+            {
+              "hero": "tiny"
+            },
+            {
+              "hero": "treant-protector"
+            },
+            {
+              "hero": "tusk"
+            },
+            {
+              "hero": "underlord"
+            },
+            {
+              "hero": "undying"
+            },
+            {
+              "hero": "wrait-king"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "hero": "anti-mage"
+            },
+            {
+              "hero": "arc-warden"
+            },
+            {
+              "hero": "blood-seeker"
+            },
+            {
+              "hero": "bounty-hunter"
+            },
+            {
+              "hero": "brood-mother"
+            },
+            {
+              "hero": "clinkz"
+            },
+            {
+              "hero": "drow-ranger"
+            },
+            {
+              "hero": "ember-spirit"
+            },
+            {
+              "hero": "faceless-void"
+            },
+            {
+              "hero": "gyrocopter"
+            },
+            {
+              "hero": "jugernaut"
+            },
+            {
+              "hero": "long-druid"
+            },
+            {
+              "hero": "luna"
+            },
+            {
+              "hero": "medusa"
+            },
+            {
+              "hero": "meepo"
+            },
+            {
+              "hero": "mirana"
+            },
+            {
+              "hero": "monkey-king"
+            },
+            {
+              "hero": "morphling"
+            },
+            {
+              "hero": "naga-siren"
+            },
+            {
+              "hero": "nyx-assassin"
+            },
+            {
+              "hero": "pangolier"
+            }
+          ],
+          [
+            {
+              "hero": "phantom-assassin"
+            },
+            {
+              "hero": "phantom-lancer"
+            },
+            {
+              "hero": "razor"
+            },
+            {
+              "hero": "riki"
+            },
+            {
+              "hero": "shadow-fiend"
+            },
+            {
+              "hero": "slark"
+            },
+            {
+              "hero": "sniper"
+            },
+            {
+              "hero": "spectre"
+            },
+            {
+              "hero": "templar-assassin"
+            },
+            {
+              "hero": "terror-blade"
+            },
+            {
+              "hero": "troll-warlord"
+            },
+            {
+              "hero": "ursa"
+            },
+            {
+              "hero": "vengeful-spirit"
+            },
+            {
+              "hero": "venomancer"
+            },
+            {
+              "hero": "viper"
+            },
+            {
+              "hero": "weaver"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "hero": "ancient-appirition"
+            },
+            {
+              "hero": "bane"
+            },
+            {
+              "hero": "bat-rider"
+            },
+            {
+              "hero": "chen"
+            },
+            {
+              "hero": "crystal-maiden"
+            },
+            {
+              "hero": "dark-seer"
+            },
+            {
+              "hero": "dark-willow"
+            },
+            {
+              "hero": "dazzle"
+            },
+            {
+              "hero": "death-prophet"
+            },
+            {
+              "hero": "disruptor"
+            },
+            {
+              "hero": "enchantress"
+            },
+            {
+              "hero": "enigma"
+            },
+            {
+              "hero": "invoker"
+            },
+            {
+              "hero": "jakiro"
+            },
+            {
+              "hero": "keeper-of-the-light"
+            },
+            {
+              "hero": "leshrac"
+            },
+            {
+              "hero": "lich"
+            },
+            {
+              "hero": "lina"
+            },
+            {
+              "hero": "lion"
+            },
+            {
+              "hero": "natures-prophet"
+            },
+            {
+              "hero": "necrophos"
+            }
+          ],
+          [
+            {
+              "hero": "ogre-magi"
+            },
+            {
+              "hero": "oracle"
+            },
+            {
+              "hero": "out-world-devourer"
+            },
+            {
+              "hero": "puck"
+            },
+            {
+              "hero": "pugna"
+            },
+            {
+              "hero": "queen-of-pain"
+            },
+            {
+              "hero": "rubik"
+            },
+            {
+              "hero": "shadow-demon"
+            },
+            {
+              "hero": "shadow-shamaan"
+            },
+            {
+              "hero": "silencer"
+            },
+            {
+              "hero": "sky-wraith-mage"
+            },
+            {
+              "hero": "storm-spirit"
+            },
+            {
+              "hero": "techies"
+            },
+            {
+              "hero": "tinker"
+            },
+            {
+              "hero": "visage"
+            },
+            {
+              "hero": "warlock"
+            },
+            {
+              "hero": "wind-ranger"
+            },
+            {
+              "hero": "winter-wyvern"
+            },
+            {
+              "hero": "witch-doctor"
+            },
+            {
+              "hero": "zeus"
+            }
+          ]
+        ]
+      ]
+    }
+  }
+}

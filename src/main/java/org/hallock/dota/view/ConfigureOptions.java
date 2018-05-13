@@ -5,17 +5,23 @@
  */
 package org.hallock.dota.view;
 
+import org.hallock.dota.control.Registry;
+import org.hallock.dota.view.Ui.View;
+
 /**
  *
  * @author thallock
  */
-public class ConfigureOptions extends javax.swing.JPanel {
+public class ConfigureOptions extends javax.swing.JPanel implements View {
 
     /**
      * Creates new form ConfigureOptions
      */
     public ConfigureOptions() {
         initComponents();
+    }
+    
+    public void refresh() {
     }
 
     /**
@@ -78,7 +84,8 @@ public class ConfigureOptions extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gridButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gridButtonActionPerformed
-        // TODO add your handling code here:
+        Registry.getInstance().ui.show(Ui.GRID_CONFIG_VIEW);
+        Registry.getInstance().ui.show(Ui.GRID_PREVIEW);
     }//GEN-LAST:event_gridButtonActionPerformed
 
     private void pickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickButtonActionPerformed

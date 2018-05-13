@@ -3,10 +3,12 @@ package org.hallock.dota.model.geometry;
 import org.json.JSONObject;
 
 public class ImageRowGeometry {
-    int startX;
-    int startY;
-    int width;
-    int horizontalGap;
+    public int startX;
+    public int startY;
+    public int width;
+    public int height;
+    public int horizontalGap;
+    public int teamGap;
 
 
 

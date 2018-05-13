@@ -1,11 +1,8 @@
-
-
-
 {
     "types": [
         [
             [{
-                "hero": "abadon"
+                "hero": "abaddon"
             }, {
                 "hero": "alchemist"
             }, {
@@ -27,7 +24,7 @@
             }, {
                 "hero": "dragon-knight"
             }, {
-                "hero": "earth-"
+                "hero": "earth-spirit"
             }, {
                 "hero": "earth-shaker"
             }, {
