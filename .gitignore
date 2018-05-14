@@ -27,5 +27,6 @@ hs_err_pid*
 .idea/tasks.xml
 
 output/
-.comparisons
+comparisons.txt
 output.2/
+src/main/java/com/jlmd/simpleneuralnetwork/neuralnetwork/

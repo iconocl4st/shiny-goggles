@@ -1,4 +1,5 @@
 {
+  "url-for-images": "https://github.com/joshuaduffy/dota2api/blob/master/dota2api/ref/heroes.json",
   "heroes": [
     {
       "name": "antimage",
@@ -536,9 +537,9 @@
       "localized_name": "Terror Blade"
     },
     {
-      "name": "phoenix",
+      "name": "pheonix",
       "id": 110,
-      "localized_name": "Phoenix"
+      "localized_name": "Pheonix"
     },
     {
       "name": "techies",
@@ -560,49 +561,24 @@
       "id": 113,
       "localized_name": "Arc Warden"
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
-      "name": "pheonix",
-      "id": -1,
-      "localized_name": "Pheonix"
-    }, {
       "name": "monkey_king",
-      "id": -2,
+      "id": 114,
       "localized_name": "Monkey King"
-    }, {
-      "name": "pangolier",
-      "id": -3,
-      "localized_name": "Pangolier"
-    }, {
+    },
+    {
       "name": "dark_willow",
-      "id": -4,
+      "id": 119,
       "localized_name": "Dark Willow"
     },
-
-
-
+    {
+      "name": "pangolier",
+      "id": 120,
+      "localized_name": "Pangolier"
+    },
     {
       "name": "none",
-      "id": -5,
+      "id": -1,
       "localized_name": "None"
     }
   ]

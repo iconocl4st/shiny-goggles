@@ -21,8 +21,12 @@
               <Component id="accountButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="configureButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="logLabel" pref="487" max="32767" attributes="0"/>
+              <Component id="logLabel" pref="663" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -44,6 +48,8 @@
                       <Component id="accountButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="configureButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="logLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -54,7 +60,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="accountButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Account settings"/>
+        <Property name="text" type="java.lang.String" value="Account"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountButtonActionPerformed"/>
@@ -72,7 +78,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="configureButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Configure Application"/>
+        <Property name="text" type="java.lang.String" value="Configure"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="configureButtonActionPerformed"/>
@@ -82,6 +88,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Initializing"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Identify"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Post"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

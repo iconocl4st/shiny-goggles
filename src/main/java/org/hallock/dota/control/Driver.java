@@ -1,9 +1,7 @@
 
 package org.hallock.dota.control;
 
-import org.hallock.dota.control.others.GetDistances;
-import org.hallock.dota.control.others.TakeImages;
-import org.hallock.dota.control.others.TestPost;
+import org.hallock.dota.control.others.*;
 import org.hallock.dota.model.Heroes;
 import org.hallock.dota.util.Cameras;
 import org.hallock.dota.util.Logger;
@@ -20,8 +18,8 @@ public class Driver {
             Registry.registry = new Registry();
             Registry.registry.logger = Logger.buildLogger();
             Registry.registry.config = new Config(
-                    "./config/config.json",
-                    Serializer.readFile(Paths.get("./config/config.json"))
+                    "./creds.txt",
+                    Serializer.readFile(Paths.get("./creds.txt"))
             );
             Registry.registry.camera = Cameras.buildCamera();
             Registry.registry.heroes = Heroes.buildHeroes(
@@ -41,9 +39,6 @@ public class Driver {
 
             Registry.registry.logger.log("Started Application");
 
-            Registry.getInstance().picker.identifyPicks();
-
-
             switch ("ui") {
                 case "distances":
                     GetDistances.getAllDistances();
@@ -53,12 +48,17 @@ public class Driver {
                     TakeImages.takeSomePictures();
                     System.exit(0);
                     break;
+                case "nn":
+                    TestSimpleNN.runSimpleNN();
+                    System.exit(0);
+                    break;
                 case "post":
                     TestPost.testPost();
                     System.exit(0);
                     break;
                 case "ui":
                 default:
+//                    Registry.getInstance().picker.identifyPicks();
                     Registry.getInstance().ui.show();
             }
 

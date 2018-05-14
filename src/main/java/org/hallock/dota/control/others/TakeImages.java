@@ -26,6 +26,7 @@ public class TakeImages {
         return p;
     }
 
+
     public static void takeSomePictures() throws JSONException, AWTException, IOException {
         if (!Files.exists(Paths.get("./output"))) {
             Files.createDirectory(Paths.get("./output"));
@@ -36,6 +37,10 @@ public class TakeImages {
                 "png",
                 getPathOutput("whole_thing").toFile()
         );
+
+        if (true) {
+            return;
+        }
 
         GridEnumerator.enumerateGrid(Registry.getInstance().gridGeometry, Registry.getInstance().gridConfig, new GridEnumerator.GridItemVisitor() {
             @Override

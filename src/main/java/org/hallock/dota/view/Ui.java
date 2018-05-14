@@ -2,16 +2,21 @@ package org.hallock.dota.view;
 
 
 import org.hallock.dota.control.Registry;
+import org.hallock.dota.control.others.TakeImages;
 import org.hallock.dota.model.Identifications;
 import org.hallock.dota.model.UnIdentifiedImage;
+import org.json.JSONException;
 
 import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Ui {
     MainPanel mainPanel;
     JFrame mainFrame;
+    Identifications.IdentificationResults results;
 
 
     ImageSelector imageSelector;
@@ -41,9 +46,39 @@ public class Ui {
         show(Ui.PICK_GUESSES_VIEW);
     }
 
-    public void setPicks(Identifications.IdentificationResults results) {
+    public void setPicks(Identifications.IdentificationResults results, LinkedList<UnIdentifiedImage> unidentified) {
+        if (!unidentified.isEmpty()) {
+            showUnidentifiedHeroes(unidentified);
+        }
         DebugPane guesses = (DebugPane) getView(Ui.DEBUG_VIEW).getPanel();
         guesses.setResults(results);
+        guesses.refresh();
+        this.results = results;
+    }
+
+    public void identify() {
+        try {
+            TakeImages.takeSomePictures();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Registry.getInstance().picker.identifyPicks();
+    }
+
+    public void post() {
+        if (results == null) {
+            Registry.getInstance().logger.log("No results to post. Please identify first.");
+            return;
+        }
+        try {
+            Registry.getInstance().networkManager.sendPicks(results, null);
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void show() {

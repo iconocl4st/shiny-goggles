@@ -1,5 +1,6 @@
 package org.hallock.dota.model;
 
+import org.hallock.dota.control.AutoPickerBuilder;
 import org.hallock.dota.control.Registry;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +63,12 @@ public class Hero {
                 state,
                 counter
         ));
+
+        try {
+            Registry.getInstance().picker.setIdentifiers(AutoPickerBuilder.builIdentifiers());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateCache() {

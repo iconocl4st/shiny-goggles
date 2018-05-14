@@ -7,9 +7,6 @@ import java.util.LinkedList;
 
 public class AutoPicker {
 
-    // first player [x=168,y=10,width=130,height=77]
-    // first hero [x=172,y=188,width=62,height=89]
-
     private LinkedList<StateIdentifier> identifiers;
 
     public void setIdentifiers(LinkedList<StateIdentifier> identifiers) {
@@ -21,12 +18,8 @@ public class AutoPicker {
         for (StateIdentifier identifier : identifiers) {
             identifier.identify(Registry.getInstance().camera, results);
         }
-        LinkedList<UnIdentifiedImage> unIdentifiedImages = results.getUnidentified();
-        if (!unIdentifiedImages.isEmpty()) {
-            Registry.getInstance().ui.showUnidentifiedHeroes(unIdentifiedImages);
-        }
         Identifications.IdentificationResults picks = results.getResults();
-        Registry.getInstance().ui.setPicks(picks);
+        Registry.getInstance().ui.setPicks(picks, results.getUnidentified());
         return picks;
     }
 }
