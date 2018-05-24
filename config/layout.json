@@ -1,0 +1,400 @@
+{
+  "players": {
+    "geometry": {
+      "start-x": 165,
+      "start-y": 77,
+      "width": 118,
+      "height": 25,
+      "horizontal-gap": 6,
+      "team-gap": 362
+    }
+  },
+  "picks": {
+    "geometry": {
+      "start-x": 165,
+      "start-y": 7,
+      "width": 118,
+      "height": 64,
+      "horizontal-gap": 6,
+      "team-gap": 362
+    }
+  },
+  "grid": {
+    "geometry": {
+      "horizontal-gap": 7,
+      "vertical-gap": 6,
+      "type-vertical-gap": 32,
+      "hero-width": 45,
+      "hero-height": 73,
+      "start-x": 172,
+      "start-y": 188
+    },
+    "config": {
+      "types": [
+        [
+          [
+            {
+              "hero": "abaddon"
+            },
+            {
+              "hero": "alchemist"
+            },
+            {
+              "hero": "axe"
+            },
+            {
+              "hero": "beast_master"
+            },
+            {
+              "hero": "brew_master"
+            },
+            {
+              "hero": "bristleback"
+            },
+            {
+              "hero": "centaur"
+            },
+            {
+              "hero": "chaos_knight"
+            },
+            {
+              "hero": "rattletrap"
+            },
+            {
+              "hero": "doom_bringer"
+            },
+            {
+              "hero": "dragon_knight"
+            },
+            {
+              "hero": "earth_spirit"
+            },
+            {
+              "hero": "earth_shaker"
+            },
+            {
+              "hero": "elder_titan"
+            },
+            {
+              "hero": "huskar"
+            },
+            {
+              "hero": "wisp"
+            },
+            {
+              "hero": "kunkka"
+            },
+            {
+              "hero": "legion_commander"
+            },
+            {
+              "hero": "life_stealer"
+            },
+            {
+              "hero": "lycan"
+            },
+            {
+              "hero": "magnataur"
+            }
+          ],
+          [
+            {
+              "hero": "night_stalker"
+            },
+            {
+              "hero": "omniknight"
+            },
+            {
+              "hero": "pheonix"
+            },
+            {
+              "hero": "pudge"
+            },
+            {
+              "hero": "sand_king"
+            },
+            {
+              "hero": "slardar"
+            },
+            {
+              "hero": "spirit_breaker"
+            },
+            {
+              "hero": "sven"
+            },
+            {
+              "hero": "tide_hunter"
+            },
+            {
+              "hero": "shredder"
+            },
+            {
+              "hero": "tiny"
+            },
+            {
+              "hero": "treant"
+            },
+            {
+              "hero": "tusk"
+            },
+            {
+              "hero": "abyssal_underlord"
+            },
+            {
+              "hero": "undying"
+            },
+            {
+              "hero": "skeleton_king"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "hero": "antimage"
+            },
+            {
+              "hero": "arc_warden"
+            },
+            {
+              "hero": "blood_seeker"
+            },
+            {
+              "hero": "bounty_hunter"
+            },
+            {
+              "hero": "brood_mother"
+            },
+            {
+              "hero": "clinkz"
+            },
+            {
+              "hero": "drow_ranger"
+            },
+            {
+              "hero": "ember_spirit"
+            },
+            {
+              "hero": "faceless_void"
+            },
+            {
+              "hero": "gyrocopter"
+            },
+            {
+              "hero": "juggernaut"
+            },
+            {
+              "hero": "lone_druid"
+            },
+            {
+              "hero": "luna"
+            },
+            {
+              "hero": "medusa"
+            },
+            {
+              "hero": "meepo"
+            },
+            {
+              "hero": "mirana"
+            },
+            {
+              "hero": "monkey_king"
+            },
+            {
+              "hero": "morphling"
+            },
+            {
+              "hero": "naga_siren"
+            },
+            {
+              "hero": "nyx_assassin"
+            },
+            {
+              "hero": "pangolier"
+            }
+          ],
+          [
+            {
+              "hero": "phantom_assassin"
+            },
+            {
+              "hero": "phantom_lancer"
+            },
+            {
+              "hero": "razor"
+            },
+            {
+              "hero": "riki"
+            },
+            {
+              "hero": "nevermore"
+            },
+            {
+              "hero": "slark"
+            },
+            {
+              "hero": "sniper"
+            },
+            {
+              "hero": "spectre"
+            },
+            {
+              "hero": "templar_assassin"
+            },
+            {
+              "hero": "terror_blade"
+            },
+            {
+              "hero": "troll_warlord"
+            },
+            {
+              "hero": "ursa"
+            },
+            {
+              "hero": "vengeful_spirit"
+            },
+            {
+              "hero": "venomancer"
+            },
+            {
+              "hero": "viper"
+            },
+            {
+              "hero": "weaver"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "hero": "ancient_apparition"
+            },
+            {
+              "hero": "bane"
+            },
+            {
+              "hero": "bat_rider"
+            },
+            {
+              "hero": "chen"
+            },
+            {
+              "hero": "crystal_maiden"
+            },
+            {
+              "hero": "dark_seer"
+            },
+            {
+              "hero": "dark_willow"
+            },
+            {
+              "hero": "dazzle"
+            },
+            {
+              "hero": "death_prophet"
+            },
+            {
+              "hero": "disruptor"
+            },
+            {
+              "hero": "enchantress"
+            },
+            {
+              "hero": "enigma"
+            },
+            {
+              "hero": "invoker"
+            },
+            {
+              "hero": "jakiro"
+            },
+            {
+              "hero": "keeper_of_the_light"
+            },
+            {
+              "hero": "leshrac"
+            },
+            {
+              "hero": "lich"
+            },
+            {
+              "hero": "lina"
+            },
+            {
+              "hero": "lion"
+            },
+            {
+              "hero": "furion"
+            },
+            {
+              "hero": "necrolyte"
+            }
+          ],
+          [
+            {
+              "hero": "ogre_magi"
+            },
+            {
+              "hero": "oracle"
+            },
+            {
+              "hero": "obsidian_destroyer"
+            },
+            {
+              "hero": "puck"
+            },
+            {
+              "hero": "pugna"
+            },
+            {
+              "hero": "queen_of_pain"
+            },
+            {
+              "hero": "rubick"
+            },
+            {
+              "hero": "shadow_demon"
+            },
+            {
+              "hero": "shadow_shaman"
+            },
+            {
+              "hero": "silencer"
+            },
+            {
+              "hero": "skywrath_mage"
+            },
+            {
+              "hero": "storm_spirit"
+            },
+            {
+              "hero": "techies"
+            },
+            {
+              "hero": "tinker"
+            },
+            {
+              "hero": "visage"
+            },
+            {
+              "hero": "warlock"
+            },
+            {
+              "hero": "wind_runner"
+            },
+            {
+              "hero": "winter_wyvern"
+            },
+            {
+              "hero": "witch_doctor"
+            },
+            {
+              "hero": "zeus"
+            }
+          ]
+        ]
+      ]
+    }
+  }
+}
