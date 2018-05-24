@@ -41,9 +41,9 @@ public final class Cameras {
         }
     }
 
-    public static Camera buildCamera() throws AWTException, IOException {
-        if (false) {
-            BufferedImage image = ImageIO.read(new File("/work/dota/AutoPicker/output/whole_thing_0010.png"));
+    public static Camera buildCamera(String path) throws AWTException, IOException {
+        if (path != null) {
+            BufferedImage image = ImageIO.read(new File(path));
             return new ImageCamera(image);
         } else {
             Robot robot = new Robot();

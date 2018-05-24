@@ -26,7 +26,6 @@ public abstract class HeroIdentifier implements StateIdentifier {
                         observed,
                         Registry.getInstance().config.comparisonParameter
                 );
-                System.out.println("The distance: " + distance);
                 if (distance > 500) {
                     continue;
                 }

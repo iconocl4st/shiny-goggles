@@ -21,7 +21,8 @@ public class Driver {
                     "./creds.txt",
                     Serializer.readFile(Paths.get("./creds.txt"))
             );
-            Registry.registry.camera = Cameras.buildCamera();
+            Registry.registry.threadManager = ThreadManager.buildThreadPool();
+            Registry.registry.camera = Cameras.buildCamera(null);
             Registry.registry.heroes = Heroes.buildHeroes(
                     Serializer.readFile(Paths.get(Registry.getInstance().config.heroConfigFile))
             );
@@ -34,12 +35,10 @@ public class Driver {
             Registry.registry.networkManager = NetworkManager.buildNetworkManager();
 
             Registry.registry.runner = new Runner(new Timer());
-
             Registry.registry.runner.start();
-
             Registry.registry.logger.log("Started Application");
 
-            switch ("ui") {
+            switch ("images") {
                 case "distances":
                     GetDistances.getAllDistances();
                     System.exit(0);
@@ -47,6 +46,9 @@ public class Driver {
                 case "images":
                     TakeImages.takeSomePictures();
                     System.exit(0);
+                    break;
+                case "classify":
+                    ManuallyClassify.classify();
                     break;
                 case "nn":
                     TestSimpleNN.runSimpleNN();
@@ -58,7 +60,6 @@ public class Driver {
                     break;
                 case "ui":
                 default:
-//                    Registry.getInstance().picker.identifyPicks();
                     Registry.getInstance().ui.show();
             }
 
@@ -67,8 +68,4 @@ public class Driver {
             System.exit(-1);
         }
     }
-
-
-
-
 }

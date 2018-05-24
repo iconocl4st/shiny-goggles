@@ -12,10 +12,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class GetDistances {
-    private static String[] collectImages() {
+    public static String[] collectImages(String path) {
         LinkedList<String> files = new LinkedList<>();
         for (Iterator<File> it = FileUtils.iterateFiles(
-                new File("./config/images"), new String[]{"png"}, true); it.hasNext(); ) {
+                new File(path), new String[]{"png"}, true); it.hasNext(); ) {
             File file = it.next();
             files.add(file.toString());
         }
@@ -23,7 +23,7 @@ public class GetDistances {
     }
 
     public static void getAllDistances() throws IOException {
-        String[] files = collectImages();
+        String[] files = collectImages("./config/images");
         try (PrintWriter writer = new PrintWriter(new File("comparisons.txt"))) {
             for (int i = 0; i < files.length; i++) {
                 double min = Double.POSITIVE_INFINITY;

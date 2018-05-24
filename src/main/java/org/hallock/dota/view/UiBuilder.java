@@ -53,6 +53,7 @@ public class UiBuilder {
     public static Ui buildUi(JSONObject uiSettings) throws IOException {
         final Ui ui = new Ui();
 
+        createView(ui, uiSettings, Ui.IMAGE_PREVIEW, "Image preview", new ImageViewer());
         createView(ui, uiSettings, Ui.CONFIGURAION_VIEW,"Configuration Options", new ConfigureOptions());
         createView(ui, uiSettings, Ui.ACCOUNT_SETTINGS_VIEW,"Account Settings", new AccountSettings());
         createView(ui, uiSettings, Ui.DEBUG_VIEW, "Debug View", new DebugPane());
@@ -61,11 +62,12 @@ public class UiBuilder {
         createView(ui, uiSettings, Ui.NAME_CONFIG_VIEW, "Name Settings", new RowConfig.PlayerRowConfig());
         createView(ui, uiSettings, Ui.PICK_CONFIG_VIEW, "Picked Settings", new RowConfig.PickRowConfig());
         createView(ui, uiSettings, Ui.GRID_PREVIEW,"Preview", new GridPreviewer(
-                ImageIO.read(new File("output.png"))
+                ImageIO.read(new File("./screenshots/output.png"))
         ));
         createMainFrame(ui, uiSettings);
 
         ui.views.get(Ui.GRID_PREVIEW).frame.setBounds(0, 0, 1920, 1200);
+        ui.views.get(Ui.IMAGE_PREVIEW).frame.setBounds(0, 0, 1920, 1200);
 
         ComponentListener closePreview = new ComponentAdapter() {
             @Override

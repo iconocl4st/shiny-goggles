@@ -18,6 +18,7 @@ import java.util.LinkedList;
 public class PickGuesses extends javax.swing.JPanel implements Ui.View {
 
     private LinkedList<PickGuess> pickGuesses = new LinkedList<>();
+    private Runnable completionCallback;
     /**
      * Creates new form PickGuesses
      */
@@ -71,27 +72,32 @@ public class PickGuesses extends javax.swing.JPanel implements Ui.View {
 
     private static final int RESIZE_HEIGHT = 200;
     void resizeComponents() {
-        int HEIGHT  = 200;
         int currentY = 0;
         for (PickGuess pickGuess : pickGuesses) {
             pickGuess.setLocation(0, currentY);
-            pickGuess.setSize(jPanel1.getWidth(), HEIGHT);
-            pickGuess.setPreferredSize(new Dimension(jPanel1.getWidth(), HEIGHT));
-            currentY += HEIGHT;
+            pickGuess.setSize(jPanel1.getWidth(), RESIZE_HEIGHT);
+            pickGuess.setPreferredSize(new Dimension(jPanel1.getWidth(), RESIZE_HEIGHT));
+            currentY += RESIZE_HEIGHT;
         }
-        jPanel1.setPreferredSize(new Dimension(jPanel1.getWidth(), (pickGuesses.size() + 1) * HEIGHT));
+        jPanel1.setPreferredSize(new Dimension(jPanel1.getWidth(), (pickGuesses.size() + 1) * RESIZE_HEIGHT));
     }
 
     void removeGuess(PickGuess guess) {
         jPanel1.remove(guess);
         pickGuesses.remove(guess);
         refresh();
-        if (pickGuesses.isEmpty()) {
-            Registry.getInstance().ui.hide(Ui.PICK_GUESSES_VIEW);
+        if (!pickGuesses.isEmpty()) {
+            return;
+        }
+        Registry.getInstance().ui.hide(Ui.PICK_GUESSES_VIEW);
+        if (completionCallback != null) {
+            Runnable r = completionCallback;
+            completionCallback = null;
+            Registry.getInstance().threadManager.run(r);
         }
     }
 
-    public void setGuesses(LinkedList<UnIdentifiedImage> heroes) {
+    public void setGuesses(LinkedList<UnIdentifiedImage> heroes, Runnable callback) {
         jPanel1.removeAll();
         pickGuesses.clear();
         for (UnIdentifiedImage image : heroes) {
@@ -100,6 +106,7 @@ public class PickGuesses extends javax.swing.JPanel implements Ui.View {
             jPanel1.add(pickGuess);
         }
         refresh();
+        this.completionCallback = callback;
     }
 
 

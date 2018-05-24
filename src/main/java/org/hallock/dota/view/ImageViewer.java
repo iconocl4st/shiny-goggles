@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ImageViewer extends JPanel {
+public class ImageViewer extends JPanel implements Ui.View {
     private BufferedImage image;
 
     protected void setImage(BufferedImage image) {
@@ -20,5 +20,10 @@ public class ImageViewer extends JPanel {
         }
 
         g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    @Override
+    public void refresh() {
+        repaint();
     }
 }

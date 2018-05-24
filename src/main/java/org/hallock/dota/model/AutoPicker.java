@@ -13,13 +13,11 @@ public class AutoPicker {
         this.identifiers = identifiers;
     }
 
-    public Identifications.IdentificationResults identifyPicks() {
+    public Identifications identifyPicks() {
         Identifications results = Identifications.createEmptyResults();
         for (StateIdentifier identifier : identifiers) {
             identifier.identify(Registry.getInstance().camera, results);
         }
-        Identifications.IdentificationResults picks = results.getResults();
-        Registry.getInstance().ui.setPicks(picks, results.getUnidentified());
-        return picks;
+        return results;
     }
 }

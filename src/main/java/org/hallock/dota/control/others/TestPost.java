@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class TestPost {
     public static void testPost() throws IOException, JSONException {
-
             Identifications.IdentificationResults results = new Identifications.IdentificationResults();
             results.banned.add(119);
             results.radiantPicked.add(120);

@@ -1,10 +1,5 @@
 package org.hallock.dota.control.others;
 
-import com.jlmd.simpleneuralnetwork.neuralnetwork.NeuralNetwork;
-import com.jlmd.simpleneuralnetwork.neuralnetwork.callback.INeuralNetworkCallback;
-import com.jlmd.simpleneuralnetwork.neuralnetwork.entity.Error;
-import com.jlmd.simpleneuralnetwork.neuralnetwork.entity.Result;
-
 import java.awt.image.BufferedImage;
 
 public class TestSimpleNN {
@@ -54,20 +49,22 @@ public class TestSimpleNN {
                 1
         };
 
-        NeuralNetwork neuralNetwork = new NeuralNetwork(x, t, new INeuralNetworkCallback() {
-            @Override
-            public void success(Result result) {
-                float[] valueToPredict = new float[] {-0.205f, 0.780f};
-                System.out.println("Success percentage: " + result.getSuccessPercentage());
-//                System.out.println("Predicted result: " + result.predictValue(valueToPredict));
-            }
-
-            @Override
-            public void failure(Error error) {
-                System.out.println("Error: " + error.getDescription());
-            }
-        });
-
-        neuralNetwork.startLearning();
+        // a good one: https://github.com/narenkmanoharan/ImageNet-Classifier-Tensorflow/blob/master/alex_net.py
+//
+//        NeuralNetwork neuralNetwork = new NeuralNetwork(x, t, new INeuralNetworkCallback() {
+//            @Override
+//            public void success(Result result) {
+//                float[] valueToPredict = new float[] {-0.205f, 0.780f};
+//                System.out.println("Success percentage: " + result.getSuccessPercentage());
+////                System.out.println("Predicted result: " + result.predictValue(valueToPredict));
+//            }
+//
+//            @Override
+//            public void failure(Error error) {
+//                System.out.println("Error: " + error.getDescription());
+//            }
+//        });
+//
+//        neuralNetwork.startLearning();
     }
 }

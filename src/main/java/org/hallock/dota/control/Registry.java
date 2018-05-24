@@ -25,6 +25,7 @@ public class Registry {
     public ImageRowGeometry nameGeometry;
     public JSONObject gridConfig;
     public NetworkManager networkManager;
+    public ThreadManager threadManager;
 
 
     public boolean stop() {

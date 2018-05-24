@@ -24,6 +24,10 @@ public class MainPanel extends javax.swing.JPanel {
         logLabel.setText(string);
     }
 
+    public void refresh() {
+        // update the post button
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
