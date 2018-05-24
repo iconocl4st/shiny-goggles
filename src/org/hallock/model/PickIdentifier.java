@@ -8,7 +8,7 @@ public class PickIdentifier implements StateIdentifier {
 
 
     @Override
-    public void identify(Camera camera, Identifications pickedState) {
+    public void identify(IdentificationContext context, Camera camera, Identifications pickedState) {
 
     }
 }

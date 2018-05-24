@@ -20,6 +20,13 @@ public class Config {
     public Rectangle dotaApplication;
     public int comparisonParameter = 2;
 
+    public static final int IMAGE_WIDTH = 227;
+    public static final int IMAGE_HEIGHT = 227;
+    public static final int[] colorsOfInterest = new int[] {
+        Color.red.getRGB(),
+        Color.white.getRGB()
+    };
+
     public Config(JSONObject config) {
         this.heroConfigFile = config.getString("hero-config-file");
         this.imageDirectory = config.getString("image-directory");

@@ -47,12 +47,17 @@ public class HeroIdentifier implements StateIdentifier {
         return minimum;
     }
 
-    void identify(Camera camera, Identifications state) {
+    void identify(IdentificationContext context, Camera camera, Identifications state) {
         HeroIdentification minimum = getMinimumIdentificationCost(camera.shoot(location));
         if (minimum == null) {
             // throw new Exception("It is null");
             System.out.println("It is null");
         }
         state.heroIdentified(hero, minimum.state);
+//        if (context.hasImageChanged(context.))
+
+        if (minimum.state == HeroState.Unavailable) {
+            context.addUnavailableHero(minimum.hero);
+        }
     }
 }

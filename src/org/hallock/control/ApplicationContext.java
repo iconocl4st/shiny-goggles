@@ -6,6 +6,8 @@ import org.hallock.util.Camera;
 import org.hallock.util.Logger;
 import org.hallock.view.Ui;
 
+import java.util.Random;
+
 // Rename to registry
 public class ApplicationContext {
     public Ui ui;
@@ -14,6 +16,7 @@ public class ApplicationContext {
     public Camera camera;
     public Logger logger;
     public Heroes heroes;
+    public Random random;
 
 
     public boolean stop() {

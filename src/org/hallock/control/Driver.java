@@ -16,9 +16,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Random;
 
 public class Driver {
     public static void main(String[] args) throws AWTException, IOException, InterruptedException {
+        ApplicationContext.applicationContext.random = new Random(1776);
         ApplicationContext.applicationContext = new ApplicationContext();
         ApplicationContext.applicationContext.logger = new Logger();
         ApplicationContext.applicationContext.config = new Config(

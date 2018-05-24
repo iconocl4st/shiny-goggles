@@ -17,6 +17,10 @@ public class Heroes {
         this.heroes = heroes;
     }
 
+    public int getNumberOfHeroes() {
+        return heroes.size();
+    }
+
     public Hero getHero(String id) {
         return heroes.get(id);
     }
