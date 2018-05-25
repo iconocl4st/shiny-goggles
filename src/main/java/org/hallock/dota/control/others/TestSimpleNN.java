@@ -58,13 +58,16 @@ public class TestSimpleNN {
         };
         JsonFactory factory = new JsonFactory();
 
-        try (JsonGenerator generator = factory.createGenerator(new File("trainingSet.json"), JsonEncoding.UTF8);) {
-            NNIO.streamTrainingSet(generator);
+        try (
+                JsonGenerator xsGenerator = factory.createGenerator(new File("./python/data/training_set_x.json"), JsonEncoding.UTF8);
+                JsonGenerator ysGenerator = factory.createGenerator(new File("./python/data/training_set_y.json"), JsonEncoding.UTF8);
+                JsonGenerator asGenerator = factory.createGenerator(new File("./python/data/training_set_a.json"), JsonEncoding.UTF8);
+        ) {
+            NNIO.streamTrainingSet(xsGenerator, ysGenerator, asGenerator);
         }
 
 
 
-        // a good one: https://github.com/narenkmanoharan/ImageNet-Classifier-Tensorflow/blob/master/alex_net.py
 //
 //        NeuralNetwork neuralNetwork = new NeuralNetwork(x, t, new INeuralNetworkCallback() {
 //            @Override

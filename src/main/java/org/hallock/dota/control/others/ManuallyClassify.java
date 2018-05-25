@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class ManuallyClassify {
 
@@ -36,9 +37,6 @@ public class ManuallyClassify {
                 }
             }
             System.out.println("Running executable " + num);
-            if (num == 27) {
-                System.out.println("here");
-            }
             try {
                 System.out.println("Opening " + imageFile);
                 BufferedImage image = ImageIO.read(new File(imageFile));
@@ -67,13 +65,27 @@ public class ManuallyClassify {
             }
         };
         String[] images = GetDistances.collectImages("./screenshots");
+        shuffleArray(images);
         for (String imageFile : images) {
-            if (imageFile.contains("other")) {
+            if (imageFile.substring("./screenshots/".length()).startsWith("other")) {
                 System.out.println("Skipping " + imageFile);
                 continue;
             }
             currentRunnable = new ClassifyImageRunnable(imageFile, currentRunnable, ++runnableCount);
         }
         currentRunnable.run();
+    }
+
+    private static void shuffleArray(String[] arr) {
+        for (int i=0;i<2 * arr.length;i++) {
+            int i1 = Registry.getInstance().random.nextInt(arr.length);
+            int i2 = Registry.getInstance().random.nextInt(arr.length);
+            if (i1 == i2) {
+                continue;
+            }
+            String s1 = arr[i2];
+            arr[i2] = arr[i1];
+            arr[i1] = s1;
+        }
     }
 }

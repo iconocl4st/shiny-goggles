@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -33,6 +34,28 @@ public class UiBuilder {
                 ui.mainPanel.setLog("Error: " + string);
             }
         });
+    }
+
+    private static BufferedImage getPreviewImage() {
+        try {
+            return ImageIO.read(new File("./screenshots/output.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedImage returnValue = new BufferedImage(
+                Registry.getInstance().config.SCREEN_WIDTH,
+                Registry.getInstance().config.SCREEN_HEIGHT,
+                BufferedImage.TYPE_INT_RGB
+        );
+        Graphics2D graphics = returnValue.createGraphics();
+        graphics.setColor(Color.white);
+        graphics.drawString(
+                "Preview image unavailable",
+                Registry.getInstance().config.SCREEN_WIDTH/ 2,
+                Registry.getInstance().config.SCREEN_HEIGHT / 2
+        );
+        return returnValue;
     }
 
     private static void createView(
@@ -61,9 +84,7 @@ public class UiBuilder {
         createView(ui, uiSettings, Ui.GRID_CONFIG_VIEW,"Grid Settings", new GridConfig());
         createView(ui, uiSettings, Ui.NAME_CONFIG_VIEW, "Name Settings", new RowConfig.PlayerRowConfig());
         createView(ui, uiSettings, Ui.PICK_CONFIG_VIEW, "Picked Settings", new RowConfig.PickRowConfig());
-        createView(ui, uiSettings, Ui.GRID_PREVIEW,"Preview", new GridPreviewer(
-                ImageIO.read(new File("./screenshots/output.png"))
-        ));
+        createView(ui, uiSettings, Ui.GRID_PREVIEW,"Preview", new GridPreviewer(getPreviewImage()));
         createMainFrame(ui, uiSettings);
 
         ui.views.get(Ui.GRID_PREVIEW).frame.setBounds(0, 0, 1920, 1200);

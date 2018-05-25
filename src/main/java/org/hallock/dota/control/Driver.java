@@ -40,7 +40,7 @@ public class Driver {
             Registry.registry.runner.start();
             Registry.registry.logger.log("Started Application");
 
-            switch ("progress") {
+            switch ("nn") {
                 case "getColor":
                     GetImageColor.getImageColor();
                     System.exit(0);
@@ -54,6 +54,8 @@ public class Driver {
                     System.exit(0);
                     break;
                 case "classify":
+                    // None should have quite a few images that it doesn't.
+                    // The tolerance is too large.
                     ManuallyClassify.classify();
                     break;
                 case "nn":

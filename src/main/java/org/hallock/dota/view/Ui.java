@@ -51,23 +51,27 @@ public class Ui {
         Registry.getInstance().threadManager.run(new Runnable() {
             @Override
             public void run() {
-                Identifications identifications = Registry.getInstance().picker.identifyPicks();
-                results = identifications.getResults();
+                try {
+                    Identifications identifications = Registry.getInstance().picker.identifyPicks();
+                    results = identifications.getResults();
 
-                DebugPane debugPane = (DebugPane) getView(Ui.DEBUG_VIEW).getPanel();
-                debugPane.setResults(results);
-                debugPane.refresh();
+                    DebugPane debugPane = (DebugPane) getView(Ui.DEBUG_VIEW).getPanel();
+                    debugPane.setResults(results);
+                    debugPane.refresh();
 
-                LinkedList<UnIdentifiedImage> unidentified = identifications.getUnidentified();
-                if (!unidentified.isEmpty()) {
-                    PickGuesses guesses = (PickGuesses) getView(Ui.PICK_GUESSES_VIEW).getPanel();
-                    guesses.setGuesses(unidentified, onIdentifiedCallback);
-                    show(Ui.PICK_GUESSES_VIEW);
-                } else if (onIdentifiedCallback != null) {
-                    Registry.getInstance().threadManager.run(onIdentifiedCallback);
+                    LinkedList<UnIdentifiedImage> unidentified = identifications.getUnidentified();
+                    if (!unidentified.isEmpty()) {
+                        PickGuesses guesses = (PickGuesses) getView(Ui.PICK_GUESSES_VIEW).getPanel();
+                        guesses.setGuesses(unidentified, onIdentifiedCallback);
+                        show(Ui.PICK_GUESSES_VIEW);
+                    } else if (onIdentifiedCallback != null) {
+                        Registry.getInstance().threadManager.run(onIdentifiedCallback);
+                    }
+
+                    mainPanel.refresh();
+                } catch (Throwable t) {
+                    t.printStackTrace();
                 }
-
-                mainPanel.refresh();
             }
         });
     }

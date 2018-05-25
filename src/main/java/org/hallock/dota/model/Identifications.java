@@ -24,7 +24,6 @@ public class Identifications {
 
     public void heroIdentified(Hero hero, HeroState state) {
         Registry.getInstance().logger.log(hero + " identified as " + state);
-
         int id = hero.pickId;
         HeroState previousState = previous.get(id);
         if (state.equals(HeroState.Unidentified)) {

@@ -15,13 +15,34 @@ import java.io.IOException;
 
 public class NNIO {
 
-    public  static void streamTrainingSet(JsonGenerator generator) throws IOException {
-        generator.writeStartObject();
+    public static void streamTrainingSet(
+            JsonGenerator xsGenerator,
+            JsonGenerator ysGenerator,
+            JsonGenerator asGenerator
 
-        generator.writeFieldName("x");
-        generator.writeStartArray();
+    ) throws IOException {
+        xsGenerator.writeStartObject();
+        xsGenerator.writeFieldName("image-width");
+        xsGenerator.writeNumber(Registry.getInstance().config.IMAGE_WIDTH);
+        xsGenerator.writeFieldName("image-height");
+        xsGenerator.writeNumber(Registry.getInstance().config.IMAGE_HEIGHT);
+        xsGenerator.writeFieldName("array");
+        xsGenerator.writeStartArray();
+
+        ysGenerator.writeStartObject();
+        ysGenerator.writeFieldName("y-dim");
+        ysGenerator.writeNumber(Registry.getInstance().heroes.getMaximumIndex() + NUMBER_OF_STATES);
+        ysGenerator.writeFieldName("array");
+        ysGenerator.writeStartArray();
+
+        asGenerator.writeStartObject();
+        asGenerator.writeFieldName("additional-dim");
+        asGenerator.writeNumber(Registry.getInstance().config.colorsOfInterest.length + 3);
+        asGenerator.writeFieldName("array");
+        asGenerator.writeStartArray();
+
         for (Hero hero : Registry.getInstance().heroes.getAll()) {
-            System.out.println("writing xs for " + hero.id);
+            System.out.println("writing " + hero.id);
             for (Hero.ImageInformation info : hero.getCache()) {
                 BufferedImage scaledImage = ImageUtils.scale(info.image);
                 try {
@@ -30,57 +51,48 @@ public class NNIO {
                     e.printStackTrace();
                 }
 
+                // X-vector
                 float[][][] x = ImageUtils.getFloats(scaledImage);
-                generator.writeStartArray();
+                xsGenerator.writeStartArray();
                 for (int i=0;i<x.length;i++) {
-                    generator.writeStartArray();
+                    xsGenerator.writeStartArray();
                     for (int j=0;j<x[i].length;j++) {
-                        generator.writeStartArray();
+                        xsGenerator.writeStartArray();
                         for (int k=0;k<x[i][j].length;k++) {
-                            generator.writeNumber(x[i][j][k]);
+                            xsGenerator.writeNumber(x[i][j][k]);
                         }
-                        generator.writeEndArray();
+                        xsGenerator.writeEndArray();
                     }
-                    generator.writeEndArray();
+                    xsGenerator.writeEndArray();
                 }
-                generator.writeEndArray();
-            }
-        }
-        generator.writeEndArray();
+                xsGenerator.writeEndArray();
 
-
-
-        generator.writeFieldName("y");
-        generator.writeStartArray();
-        for (Hero hero : Registry.getInstance().heroes.getAll()) {
-            System.out.println("writing ys for " + hero.id);
-            for (Hero.ImageInformation info : hero.getCache()) {
+                // Y vector
                 int[] y = getY(hero, info.state);
-                generator.writeStartArray();
+                ysGenerator.writeStartArray();
                 for (int i = 0; i < y.length; i++) {
-                    generator.writeNumber(y[i]);
+                    ysGenerator.writeNumber(y[i]);
                 }
-                generator.writeEndArray();
-            }
-        }
-        generator.writeEndArray();
+                ysGenerator.writeEndArray();
 
-
-        generator.writeFieldName("additional");
-        generator.writeStartArray();
-        for (Hero hero : Registry.getInstance().heroes.getAll()) {
-            System.out.println("writing additional for " + hero.id);
-            for (Hero.ImageInformation info : hero.getCache()) {
+                // Additional information
                 double[] z = getAdditionalInformation(info.image);
-                generator.writeStartArray();
+                asGenerator.writeStartArray();
                 for (int i=0;i<z.length;i++) {
-                    generator.writeNumber(z[i]);
+                    asGenerator.writeNumber(z[i]);
                 }
-                generator.writeEndArray();
+                asGenerator.writeEndArray();
             }
         }
-        generator.writeEndArray();
-        generator.writeEndObject();
+
+        xsGenerator.writeEndArray();
+        xsGenerator.writeEndObject();
+
+        ysGenerator.writeEndArray();
+        ysGenerator.writeEndObject();
+
+        asGenerator.writeEndArray();
+        asGenerator.writeEndObject();
     }
 
 
@@ -164,6 +176,7 @@ public class NNIO {
         return ret;
     }
 
+    private static final int NUMBER_OF_STATES = 5;
     private static int getHeroStateArrayIndex(HeroState state) {
         switch (state) {
             case Banned:
@@ -219,7 +232,7 @@ public class NNIO {
     private static int[] getY(Hero hero, HeroState state) {
         int num = Registry.getInstance().heroes.getMaximumIndex();
         int[] returnValue = new int[
-                num + 5
+                num + NUMBER_OF_STATES
         ];
         returnValue[hero.getIndex()] = 1;
         returnValue[num + getHeroStateArrayIndex(state)] = 1;

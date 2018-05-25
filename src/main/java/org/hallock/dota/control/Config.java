@@ -26,6 +26,9 @@ public class Config {
 
     public static final int TEAM_LENGTH = 5;
 
+    public final int SCREEN_WIDTH = 1920;
+    public final int SCREEN_HEIGHT = 1080;
+
     public final int IMAGE_WIDTH = 129;
     public final int IMAGE_HEIGHT = 129;
     public final int[] colorsOfInterest = new int[] {
