@@ -26,6 +26,13 @@ public class Config {
 
     public static final int TEAM_LENGTH = 5;
 
+    public final int IMAGE_WIDTH = 129;
+    public final int IMAGE_HEIGHT = 129;
+    public final int[] colorsOfInterest = new int[] {
+            new Color(216, 0, 0).getRGB(),
+            new Color(209, 249, 255).getRGB()
+    };
+
     public Config(String path, JSONObject config) throws JSONException {
         this.path = path;
         this.heroConfigFile = config.getString("heroes-file");

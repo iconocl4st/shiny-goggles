@@ -2,14 +2,11 @@ package org.hallock.dota.view;
 
 
 import org.hallock.dota.control.Registry;
-import org.hallock.dota.control.ThreadManager;
-import org.hallock.dota.control.others.TakeImages;
 import org.hallock.dota.model.Identifications;
 import org.hallock.dota.model.UnIdentifiedImage;
 import org.json.JSONException;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;

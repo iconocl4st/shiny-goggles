@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Hero {
-    String id;
+    public String id;
     public String display;
     int pickId;
     LinkedList<ImageInformation> imageCache;
@@ -27,6 +27,14 @@ public class Hero {
         this.pickId = heroConfig.getInt("id");
         this.display = heroConfig.getString("localized_name");
         imageCache = new LinkedList<>();
+    }
+
+    public int getIndex() {
+        return pickId;
+    }
+
+    public LinkedList<ImageInformation> getCache() {
+        return imageCache;
     }
 
     public String toString() {
@@ -119,10 +127,10 @@ public class Hero {
     }
 
 
-    private static class ImageInformation {
+    public static class ImageInformation {
         Path path;
-        BufferedImage image;
-        HeroState state;
+        public BufferedImage image;
+        public HeroState state;
         int num;
 
         ImageInformation(Path path, BufferedImage image, HeroState state, int num) {

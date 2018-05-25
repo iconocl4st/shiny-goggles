@@ -17,7 +17,7 @@ public class UserIdentifier implements StateIdentifier {
     }
 
     @Override
-    public void identify(Cameras.Camera camera, Identifications pickedState) {
+    public void identify(IdentificationContext context, Cameras.Camera camera, Identifications pickedState) {
         BufferedImage image = camera.shoot(location);
 
         int count = 0;

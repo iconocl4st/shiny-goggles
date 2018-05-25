@@ -1,6 +1,7 @@
 package org.hallock.dota.model;
 
 import org.hallock.dota.control.Registry;
+import org.hallock.dota.util.Cameras;
 import org.hallock.dota.util.OneIdea;
 
 import java.awt.*;
@@ -39,13 +40,13 @@ public abstract class HeroIdentifier implements StateIdentifier {
         return minimum;
     }
 
-    void identify(IdentificationContext context, Camera camera, Identifications state) {
+    public void identify(IdentificationContext context, Cameras.Camera camera, Identifications state) {
         HeroIdentification minimum = getMinimumIdentificationCost(camera.shoot(location));
         if (minimum == null) {
             // throw new Exception("It is null");
             System.out.println("It is null");
         }
-        state.heroIdentified(hero, minimum.state);
+        state.heroIdentified(minimum.hero, minimum.state);
 //        if (context.hasImageChanged(context.))
 
         if (minimum.state == HeroState.Unavailable) {

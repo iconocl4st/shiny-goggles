@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD:src/org/hallock/control/Driver.java
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,8 +29,6 @@ public class Driver {
         Robot robot = new Robot();
         Camera camera = new Camera(robot);
         AutoPicker picker = new AutoPicker(camera);
-=======
->>>>>>> 2df7a375f8c708099e528c46c38c714ad4cfb141:src/main/java/org/hallock/dota/control/scrapts.txt
 
 
 

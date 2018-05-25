@@ -2,7 +2,6 @@ package org.hallock.dota.control.others;
 
 import org.hallock.dota.control.Registry;
 import org.hallock.dota.util.Cameras;
-import org.hallock.dota.view.Ui;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

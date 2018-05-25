@@ -1,6 +1,14 @@
 package org.hallock.dota.control.others;
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import org.hallock.dota.nn.NNIO;
+import org.json.JSONException;
+
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class TestSimpleNN {
 
@@ -22,7 +30,7 @@ public class TestSimpleNN {
         return bytes;
     }
 
-    public static void runSimpleNN() {
+    public static void runSimpleNN() throws JSONException, IOException {
 
         float[][] x = new float[][] {
                 {1, 2, 4},
@@ -48,6 +56,13 @@ public class TestSimpleNN {
                 1,
                 1
         };
+        JsonFactory factory = new JsonFactory();
+
+        try (JsonGenerator generator = factory.createGenerator(new File("trainingSet.json"), JsonEncoding.UTF8);) {
+            NNIO.streamTrainingSet(generator);
+        }
+
+
 
         // a good one: https://github.com/narenkmanoharan/ImageNet-Classifier-Tensorflow/blob/master/alex_net.py
 //

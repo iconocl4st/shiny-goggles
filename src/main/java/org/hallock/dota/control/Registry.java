@@ -10,6 +10,8 @@ import org.hallock.dota.util.NetworkManager;
 import org.hallock.dota.view.Ui;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class Registry {
     public Ui ui;
     public Config config;
@@ -18,6 +20,7 @@ public class Registry {
     public Heroes heroes;
     public AutoPicker picker;
     public Runner runner;
+    public Random random;
 
 
     public HeroGridGeometry gridGeometry;

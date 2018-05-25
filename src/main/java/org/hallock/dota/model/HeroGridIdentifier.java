@@ -13,7 +13,7 @@ public class HeroGridIdentifier extends HeroIdentifier {
         this.hero = hero;
     }
 
-    public void identify(Cameras.Camera camera, Identifications state) {
+    public void identify(IdentificationContext context, Cameras.Camera camera, Identifications state) {
         BufferedImage observed = camera.shoot(location);
         HeroIdentification identification = getMinimumIdentificationCost(observed);
         if (identification != null) {

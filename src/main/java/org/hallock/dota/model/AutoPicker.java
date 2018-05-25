@@ -14,9 +14,10 @@ public class AutoPicker {
     }
 
     public Identifications identifyPicks() {
+        IdentificationContext context = new IdentificationContext();
         Identifications results = Identifications.createEmptyResults();
         for (StateIdentifier identifier : identifiers) {
-            identifier.identify(Registry.getInstance().camera, results);
+            identifier.identify(context, Registry.getInstance().camera, results);
         }
         return results;
     }

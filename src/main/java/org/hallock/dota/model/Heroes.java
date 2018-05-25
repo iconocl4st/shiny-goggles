@@ -27,6 +27,17 @@ public class Heroes {
         return returnValue;
     }
 
+    public int getMaximumIndex() {
+        int maximum = Integer.MIN_VALUE;
+        for (Hero hero : heroes.values()) {
+            int index = hero.getIndex();
+            if (index > maximum) {
+                maximum = index;
+            }
+        }
+        return maximum;
+    }
+
     public Hero getHeroByPickId(Integer pickId) {
         Hero returnValue = heroesByPickId.get(pickId);
         if (returnValue == null) {

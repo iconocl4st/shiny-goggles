@@ -17,7 +17,7 @@ public class PickIdentifier extends HeroIdentifier {
         return team.equals(Team.RADIANT) ? HeroState.PickedRadiant : HeroState.PickedDire;
     }
 
-    public void identify(Camera camera, Identifications state) {
+    public void identify(IdentificationContext context, Camera camera, Identifications state) {
         BufferedImage observed = camera.shoot(location);
         HeroIdentification identification = getMinimumIdentificationCost(observed);
         if (identification == null) {

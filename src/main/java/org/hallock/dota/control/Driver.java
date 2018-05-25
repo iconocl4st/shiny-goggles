@@ -10,12 +10,14 @@ import org.hallock.dota.util.Serializer;
 import org.hallock.dota.view.UiBuilder;
 
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.Timer;
 
 public class Driver {
     public static void main(String[] args) {
         try {
             Registry.registry = new Registry();
+            Registry.registry.random = new Random(1776);
             Registry.registry.logger = Logger.buildLogger();
             Registry.registry.config = new Config(
                     "./creds.txt",
@@ -38,7 +40,11 @@ public class Driver {
             Registry.registry.runner.start();
             Registry.registry.logger.log("Started Application");
 
-            switch ("images") {
+            switch ("progress") {
+                case "getColor":
+                    GetImageColor.getImageColor();
+                    System.exit(0);
+                    break;
                 case "distances":
                     GetDistances.getAllDistances();
                     System.exit(0);
@@ -58,6 +64,9 @@ public class Driver {
                     TestPost.testPost();
                     System.exit(0);
                     break;
+                case "progress":
+                    PrintProgress.printProgress();
+                    System.exit(0);
                 case "ui":
                 default:
                     Registry.getInstance().ui.show();
