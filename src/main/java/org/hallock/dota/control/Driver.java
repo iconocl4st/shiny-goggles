@@ -40,7 +40,7 @@ public class Driver {
             Registry.registry.runner.start();
             Registry.registry.logger.log("Started Application");
 
-            switch ("nn") {
+            switch ("images") {
                 case "printLayers":
                     TestSimpleNN.printLayerNames();
                     System.exit(0);

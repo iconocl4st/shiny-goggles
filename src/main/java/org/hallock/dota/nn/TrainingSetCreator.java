@@ -47,9 +47,6 @@ public class TrainingSetCreator {
             if (false && ++heroCount > 2) {
                 continue;
             }
-            if (hero.display.equals("None")) {
-                continue;
-            }
             System.out.println("writing " + hero.id);
             for (Hero.ImageInformation info : hero.getCache()) {
                 write_training_point(xsGenerator, ysGenerator, asGenerator, hero, info.image, info.state, imageCounter++);

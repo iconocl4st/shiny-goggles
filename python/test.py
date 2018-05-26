@@ -20,6 +20,8 @@ print(len(predicted))
 
 
 
+count = 0
+total_count = 0
 
 for i in range(len(expected)):
     e = expected[i]
@@ -34,7 +36,14 @@ for i in range(len(expected)):
     ph = get_max(p, 0, 121)
     ps = get_max(p, 121, 126)
 
+    same = eh == ph and es == ps
+
+    if same:
+        count += 1
+    total_count += 1
+
     print(str(eh) + " " + str(es))
     print(str(ph) + " " + str(ps))
     print("===========================================")
 
+print(str(count) + " of " + str(total_count))

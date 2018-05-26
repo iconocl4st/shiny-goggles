@@ -71,6 +71,12 @@ public class TestSimpleNN {
         Features.Output[] outputs = ImageClassifier.classifyImages(imageArray);
 
         for (int i=0;i<outputs.length;i++) {
+            if (
+                    heroeArray[i].display.equals(outputs[i].hero.display) &&
+                    stateArray[i].equals(outputs[i].state)
+            ) {
+                continue;
+            }
             System.out.println(
                     StringUtils.padRight(heroeArray[i].display, ' ', 20) + "\t" +
                     StringUtils.padRight(stateArray[i].name(), ' ', 20) + ": " +

@@ -77,11 +77,11 @@ stte_picker = tfl.layers.core.fully_connected(stte_picker, state_dim, activation
 
 auto_picker = tfl.layers.merge_ops.merge(tensors_list=[hero_picker, stte_picker], mode='concat', axis=1, name='classified')
 
-regression = tfl.layers.estimator.regression(auto_picker, optimizer='momentum', loss='categorical_crossentropy', learning_rate=0.01, name="regression")
+regression = tfl.layers.estimator.regression(auto_picker, optimizer='momentum', loss='categorical_crossentropy', learning_rate=0.001, name="regression")
 
 model = tfl.DNN(regression, checkpoint_path='checkpoints/checkpoint', max_checkpoints=1, tensorboard_verbose=2)
 model.load('last_model/model.tfl')
-model.fit({ image_input: X, feature_input: A }, Y, n_epoch=300, validation_set=0.01, shuffle=True, show_metric=True, batch_size=64, run_id='dota_autopicker')
+model.fit({ image_input: X, feature_input: A }, Y, n_epoch=30, validation_set=0.1, shuffle=True, show_metric=True, batch_size=64, run_id='dota_autopicker')
 model.save('last_model/model.tfl')
 
 output = model.predictor.session.run(auto_picker, feed_dict={ image_input: X,  feature_input: A })
