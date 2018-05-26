@@ -41,6 +41,14 @@ public class Driver {
             Registry.registry.logger.log("Started Application");
 
             switch ("nn") {
+                case "printLayers":
+                    TestSimpleNN.printLayerNames();
+                    System.exit(0);
+                    break;
+                case "createTraining":
+                    TestSimpleNN.updateTrainingSet();
+                    System.exit(0);
+                    break;
                 case "getColor":
                     GetImageColor.getImageColor();
                     System.exit(0);

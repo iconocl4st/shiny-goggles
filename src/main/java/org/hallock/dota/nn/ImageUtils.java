@@ -6,6 +6,23 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ImageUtils {
+    private static byte[] getBytes(BufferedImage image) {
+        int totalPixels = image.getWidth() * image.getHeight();
+        byte[] bytes = new byte[totalPixels * 4];
+
+        int k = 0;
+        for (int i=0;i<image.getWidth();i++) {
+            for (int j=0;j<image.getHeight();j++) {
+                int color = image.getRGB(i, j);
+                bytes[k++] = (byte)((color >>  0) & 0xff);
+                bytes[k++] = (byte)((color >>  8) & 0xff);
+                bytes[k++] = (byte)((color >> 16) & 0xff);
+                bytes[k++] = (byte)((color >> 24) & 0xff);
+            }
+        }
+
+        return bytes;
+    }
 
     static int countPixelsInImage(int color, BufferedImage image) {
         return countPixelsInImage(new int[]{color}, image)[0];

@@ -60,6 +60,10 @@ public class Heroes {
     public Hero[] getAll() {
         return heroes.values().toArray(new Hero[0]);
     }
+
+    public Hero getHeroByIndex(int heroIndex) {
+        return getHeroByPickId(heroIndex);
+    }
 }
 
 
